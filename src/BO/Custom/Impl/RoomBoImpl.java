@@ -1,5 +1,6 @@
-package BO;
+package BO.Custom.Impl;
 
+import BO.Custom.RoomBo;
 import DAO.Custom.Impl.RoomDaoImpl;
 import DAO.Custom.RoomDao;
 import Dto.RoomDto;
@@ -7,7 +8,7 @@ import Dto.RoomDto;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RoomBoImpl {
+public class RoomBoImpl implements RoomBo {
     RoomDao roomDao = new RoomDaoImpl();
 
     public ArrayList<RoomDto> getAll() throws SQLException, ClassNotFoundException {

@@ -1,5 +1,6 @@
-package BO;
+package BO.Custom.Impl;
 
+import BO.Custom.UserBo;
 import DAO.Custom.Impl.UserDaoImpl;
 import DAO.Custom.UserDao;
 import Dto.UserDto;
@@ -7,7 +8,7 @@ import Dto.UserDto;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class UserBoImpl {
+public class UserBoImpl implements UserBo {
     UserDao userDao = new UserDaoImpl();
 
     public ArrayList<UserDto> getAll() throws SQLException, ClassNotFoundException {

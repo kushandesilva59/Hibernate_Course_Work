@@ -1,11 +1,13 @@
 package BO.Custom;
 
+import BO.SuperBo;
 import Dto.ReserveDto;
+import net.bytebuddy.implementation.bind.annotation.Super;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface ReserveBo {
+public interface ReserveBo extends SuperBo {
     public ArrayList<ReserveDto> getAll() throws SQLException, ClassNotFoundException;
 
     public boolean save(ReserveDto dto) throws SQLException, ClassNotFoundException;

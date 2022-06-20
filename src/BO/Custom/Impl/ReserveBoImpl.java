@@ -1,5 +1,6 @@
-package BO;
+package BO.Custom.Impl;
 
+import BO.Custom.ReserveBo;
 import DAO.Custom.Impl.ReserveDaoImpl;
 import DAO.Custom.ReserveDao;
 import Dto.ReserveDto;
@@ -7,7 +8,7 @@ import Dto.ReserveDto;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ReserveBoImpl {
+public class ReserveBoImpl implements ReserveBo {
     ReserveDao reserveDao = new ReserveDaoImpl();
 
     public ArrayList<ReserveDto> getAll() throws SQLException, ClassNotFoundException {

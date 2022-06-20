@@ -1,5 +1,6 @@
-package BO;
+package BO.Custom.Impl;
 
+import BO.Custom.StudentBo;
 import DAO.Custom.Impl.StudentDaoImpl;
 import DAO.Custom.StudentDao;
 import Dto.StudentDto;
@@ -7,7 +8,7 @@ import Dto.StudentDto;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class StudentBoImpl {
+public class StudentBoImpl implements StudentBo {
     StudentDao studentDao = new StudentDaoImpl();
 
     public ArrayList<StudentDto> getAll() throws SQLException, ClassNotFoundException {
