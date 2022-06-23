@@ -16,9 +16,11 @@ public class LoginFormController {
     public AnchorPane loginFormContext;
 
     public void loginOnAction(ActionEvent event) throws IOException {
+
     }
 
     public void createAccountOnAction(ActionEvent event) throws IOException {
+        loadUi("CreateAccountForm");
     }
 
     public void loadUi(String location) throws IOException {
