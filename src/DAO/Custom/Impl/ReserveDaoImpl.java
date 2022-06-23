@@ -3,6 +3,7 @@ package DAO.Custom.Impl;
 import DAO.Custom.ReserveDao;
 import Dto.ReserveDto;
 
+import javax.xml.stream.FactoryConfigurationError;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -39,6 +40,6 @@ public class ReserveDaoImpl implements ReserveDao {
 
     @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
-        return null;
+return null;
     }
 }
