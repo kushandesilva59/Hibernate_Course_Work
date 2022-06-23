@@ -1,5 +1,6 @@
 package Controller;
 
+import Dto.UserDto;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 
 import javax.swing.*;
 import java.time.LocalDate;
+import java.util.Enumeration;
 import java.util.LinkedHashMap;
 import java.util.regex.Pattern;
 
@@ -43,22 +45,37 @@ public class CreateAccountFormController {
         LocalDate value = dateBirthday.getValue();
         String birthDay = value.toString();
 
+        String password = pwdPassword.getText();
+        String confirmation = pwdConfirmPassword.getText();
+        if(password.equals(confirmation)){
+
+        }else{
+            new Alert(Alert.AlertType.WARNING,"Password not matched!..").show();
+        }
+
+
     }
-
-
-
 
     public void keyReleasedOnAction(KeyEvent keyEvent) {
         validate();
     }
 
-    private void enableButton() {
-
+    private boolean ifDatePicked() {
         if(dateBirthday.getValue()==null){
-
+            return false;
         }else{
-
+            return true;
         }
+    }
+
+    public Object isGenderSelected(){
+       if(maleButton.isSelected()){
+           return "Male";
+       }else if (femaleButton.isSelected()){
+           return "female";
+       }else{
+           return null;
+       }
     }
 
     private Object validate(){
@@ -96,6 +113,16 @@ public class CreateAccountFormController {
     }
 
     public void checkPasswordOnAction(KeyEvent keyEvent) {
-        enableButton();
+        boolean ifDatePicked = ifDatePicked();
+        Object genderSelected = isGenderSelected();
+        if(genderSelected == null){
+
+        }else{
+            if(ifDatePicked){
+                btnAddAccount.setDisable(false);
+            }
+        }
+
+
     }
 }
