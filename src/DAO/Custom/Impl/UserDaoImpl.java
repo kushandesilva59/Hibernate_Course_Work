@@ -71,7 +71,15 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean exist(String userId) throws SQLException, ClassNotFoundException {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        User user = session.find(User.class, userId);
+        session.close();
+        if(user != null){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override
@@ -94,7 +102,6 @@ public class UserDaoImpl implements UserDao {
 
         Query query = session.createQuery("SELECT userId FROM User ORDER BY userId DESC LIMIT 1 ");
         List list = query.list();
-        System.out.println(list);
         session.close();
 
         String newVersion;

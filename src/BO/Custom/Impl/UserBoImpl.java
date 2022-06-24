@@ -37,6 +37,6 @@ public class UserBoImpl implements UserBo {
     }
 
     public String generateNewID() throws SQLException, ClassNotFoundException {
-        return null;
+        return userDao.generateNewID();
     }
 }

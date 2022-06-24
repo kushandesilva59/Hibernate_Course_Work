@@ -20,31 +20,31 @@ public class ReserveBoImpl implements ReserveBo {
 
     @Override
     public boolean save(Reserve reserve) throws SQLException, ClassNotFoundException {
-        return false;
+        return reserveDao.save(reserve);
     }
 
     @Override
     public boolean update(Reserve reserve) throws SQLException, ClassNotFoundException {
-        return false;
+        return reserveDao.update(reserve);
     }
 
     @Override
-    public ReserveDto search(String reserveId) throws SQLException, ClassNotFoundException {
-        return null;
+    public Reserve search(String reserveId) throws SQLException, ClassNotFoundException {
+        return reserveDao.search(reserveId);
     }
 
     @Override
     public boolean exist(String reserveId) throws SQLException, ClassNotFoundException {
-        return false;
+        return reserveDao.exist(reserveId);
     }
 
     @Override
     public boolean delete(String reserveId) throws SQLException, ClassNotFoundException {
-        return false;
+        return reserveDao.delete(reserveId);
     }
 
     @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
-        return null;
+        return reserveDao.generateNewID();
     }
 }

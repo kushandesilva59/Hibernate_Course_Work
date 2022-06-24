@@ -3,40 +3,87 @@ package DAO.Custom.Impl;
 import DAO.Custom.RoomDao;
 import Dto.RoomDto;
 import Entity.Room;
+import Util.FactoryConfiguration;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RoomDaoImpl implements RoomDao {
 
     @Override
     public ArrayList<Room> getAll() throws SQLException, ClassNotFoundException {
-        return null;
+        ArrayList<Room> rooms = new ArrayList<>();
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        List <Room>from_room = session.createQuery("FROM Room ").list();
+        while(from_room.isEmpty()){
+            for(Room room : from_room){
+                rooms.add(room);
+            }
+        }
+        session.close();
+        return rooms;
     }
 
     @Override
-    public boolean save(Room dto) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean save(Room room) throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.save(room);
+
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
-    public boolean update(Room dto) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean update(Room room) throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(room);
+
+        transaction.commit();
+        session.close();
+        return true;    }
+
+    @Override
+    public Room search(String roomId) throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Room room = session.find(Room.class, roomId);
+        session.close();
+        return room;
     }
 
     @Override
-    public Room search(String s) throws SQLException, ClassNotFoundException {
-        return null;
+    public boolean exist(String roomId) throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Room room = session.find(Room.class, roomId);
+        session.close();
+        if(room != null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
-    public boolean exist(String s) throws SQLException, ClassNotFoundException {
-        return false;
-    }
+    public boolean delete(String roomId) throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
 
-    @Override
-    public boolean delete(String s) throws SQLException, ClassNotFoundException {
-        return false;
+        Room room = session.load(Room.class, roomId);
+        session.delete(room);
+
+        transaction.commit();
+        session.close();
+
+        return true;
     }
 
     @Override

@@ -14,36 +14,36 @@ public class StudentBoImpl implements StudentBo {
 
     @Override
     public ArrayList<Student> getAll() throws SQLException, ClassNotFoundException {
-        return null;
+        return studentDao.getAll();
     }
 
     @Override
     public boolean save(Student student) throws SQLException, ClassNotFoundException {
-        return false;
+        return studentDao.save(student);
     }
 
     @Override
     public boolean update(Student student) throws SQLException, ClassNotFoundException {
-        return false;
+        return studentDao.update(student);
     }
 
     @Override
-    public StudentDto search(String studentId) throws SQLException, ClassNotFoundException {
-        return null;
+    public Student search(String studentId) throws SQLException, ClassNotFoundException {
+        return studentDao.search(studentId);
     }
 
     @Override
     public boolean exist(String studentId) throws SQLException, ClassNotFoundException {
-        return false;
+        return studentDao.exist(studentId);
     }
 
     @Override
     public boolean delete(String studentId) throws SQLException, ClassNotFoundException {
-        return false;
+        return studentDao.delete(studentId);
     }
 
     @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
-        return null;
+        return studentDao.generateNewID();
     }
 }

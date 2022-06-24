@@ -15,36 +15,36 @@ public class RoomBoImpl implements RoomBo {
 
     @Override
     public ArrayList<Room> getAll() throws SQLException, ClassNotFoundException {
-        roomDao.
+        return roomDao.getAll();
     }
 
     @Override
     public boolean save(Room room) throws SQLException, ClassNotFoundException {
-        return false;
+        return roomDao.save(room);
     }
 
     @Override
     public boolean update(Room room) throws SQLException, ClassNotFoundException {
-        return false;
+        return roomDao.update(room);
     }
 
     @Override
-    public RoomDto search(String roomId) throws SQLException, ClassNotFoundException {
-        return null;
+    public Room search(String roomId) throws SQLException, ClassNotFoundException {
+        return roomDao.search(roomId);
     }
 
     @Override
     public boolean exist(String roomId) throws SQLException, ClassNotFoundException {
-        return false;
+        return roomDao.exist(roomId);
     }
 
     @Override
     public boolean delete(String roomId) throws SQLException, ClassNotFoundException {
-        return false;
+        return roomDao.delete(roomId);
     }
 
     @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
-        return null;
+        return roomDao.generateNewID();
     }
 }

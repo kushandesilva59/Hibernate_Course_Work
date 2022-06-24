@@ -15,7 +15,7 @@ public interface ReserveBo extends SuperBo {
 
     public boolean update(Reserve reserve) throws SQLException, ClassNotFoundException;
 
-    public ReserveDto search(String reserveId) throws SQLException, ClassNotFoundException ;
+    public Reserve search(String reserveId) throws SQLException, ClassNotFoundException ;
 
     public boolean exist(String reserveId) throws SQLException, ClassNotFoundException;
 
