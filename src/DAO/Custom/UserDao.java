@@ -2,6 +2,7 @@ package DAO.Custom;
 
 import DAO.CrudDao;
 import Dto.UserDto;
+import Entity.User;
 
-public interface UserDao extends CrudDao<UserDto,String> {
+public interface UserDao extends CrudDao<User,String> {
 }

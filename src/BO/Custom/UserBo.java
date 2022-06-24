@@ -2,18 +2,19 @@ package BO.Custom;
 
 import BO.SuperBo;
 import Dto.UserDto;
+import Entity.User;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface UserBo extends SuperBo {
-    public ArrayList<UserDto> getAll() throws SQLException, ClassNotFoundException;
+    public ArrayList<User> getAll() throws SQLException, ClassNotFoundException;
 
-    public boolean save(UserDto dto) throws SQLException, ClassNotFoundException ;
+    public boolean save(User user) throws SQLException, ClassNotFoundException ;
 
-    public boolean update(UserDto dto) throws SQLException, ClassNotFoundException ;
+    public boolean update(User user) throws SQLException, ClassNotFoundException ;
 
-    public UserDto search(String userId) throws SQLException, ClassNotFoundException ;
+    public User search(String userId) throws SQLException, ClassNotFoundException ;
 
     public boolean exist(String userId) throws SQLException, ClassNotFoundException ;
 

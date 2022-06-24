@@ -2,29 +2,31 @@ package DAO.Custom.Impl;
 
 import DAO.Custom.ReserveDao;
 import Dto.ReserveDto;
+import Entity.Reserve;
 
 import javax.xml.stream.FactoryConfigurationError;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ReserveDaoImpl implements ReserveDao {
+
     @Override
-    public ArrayList<ReserveDto> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Reserve> getAll() throws SQLException, ClassNotFoundException {
         return null;
     }
 
     @Override
-    public boolean save(ReserveDto dto) throws SQLException, ClassNotFoundException {
+    public boolean save(Reserve dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 
     @Override
-    public boolean update(ReserveDto dto) throws SQLException, ClassNotFoundException {
+    public boolean update(Reserve dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 
     @Override
-    public ReserveDto search(String s) throws SQLException, ClassNotFoundException {
+    public Reserve search(String s) throws SQLException, ClassNotFoundException {
         return null;
     }
 
@@ -40,6 +42,6 @@ public class ReserveDaoImpl implements ReserveDao {
 
     @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
-return null;
+        return null;
     }
 }

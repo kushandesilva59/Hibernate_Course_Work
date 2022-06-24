@@ -2,16 +2,17 @@ package BO.Custom;
 
 import BO.SuperBo;
 import Dto.StudentDto;
+import Entity.Student;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface StudentBo extends SuperBo {
-    public ArrayList<StudentDto> getAll() throws SQLException, ClassNotFoundException ;
+    public ArrayList<Student> getAll() throws SQLException, ClassNotFoundException ;
 
-    public boolean save(StudentDto dto) throws SQLException, ClassNotFoundException;
+    public boolean save(Student student) throws SQLException, ClassNotFoundException;
 
-    public boolean update(StudentDto dto) throws SQLException, ClassNotFoundException;
+    public boolean update(Student student) throws SQLException, ClassNotFoundException;
 
     public StudentDto search(String studentId) throws SQLException, ClassNotFoundException ;
 

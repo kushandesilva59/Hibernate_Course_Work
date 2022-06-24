@@ -1,6 +1,8 @@
 package Controller;
 
+import DAO.Custom.Impl.UserDaoImpl;
 import Dto.UserDto;
+import Entity.User;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.event.ActionEvent;
@@ -9,6 +11,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 import javax.swing.*;
+import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Enumeration;
 import java.util.LinkedHashMap;
@@ -34,7 +38,7 @@ public class CreateAccountFormController {
             femaleButton.setToggleGroup(group);
     }
 
-    public void addAccountOnAction(ActionEvent event) {
+    public void addAccountOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String name = txtName.getText();
         String address = txtAddress.getText();
         String contact = txtContact.getText();
@@ -48,6 +52,11 @@ public class CreateAccountFormController {
         String password = pwdPassword.getText();
         String confirmation = pwdConfirmPassword.getText();
         if(password.equals(confirmation)){
+            User u001 = new User("U001", name, address, contact, Date.valueOf(birthDay), gender, password);
+
+
+            UserDaoImpl userDao = new UserDaoImpl();
+            userDao.save(u001);
 
         }else{
             new Alert(Alert.AlertType.WARNING,"Password not matched!..").show();

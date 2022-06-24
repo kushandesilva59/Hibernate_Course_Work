@@ -4,6 +4,7 @@ import BO.Custom.RoomBo;
 import DAO.Custom.Impl.RoomDaoImpl;
 import DAO.Custom.RoomDao;
 import Dto.RoomDto;
+import Entity.Room;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,30 +12,38 @@ import java.util.ArrayList;
 public class RoomBoImpl implements RoomBo {
     RoomDao roomDao = new RoomDaoImpl();
 
-    public ArrayList<RoomDto> getAll() throws SQLException, ClassNotFoundException {
-        return roomDao.getAll();
+
+    @Override
+    public ArrayList<Room> getAll() throws SQLException, ClassNotFoundException {
+        roomDao.
     }
 
-    public boolean save(RoomDto dto) throws SQLException, ClassNotFoundException {
-        return roomDao.save(dto);
+    @Override
+    public boolean save(Room room) throws SQLException, ClassNotFoundException {
+        return false;
     }
 
-    public boolean update(RoomDto dto) throws SQLException, ClassNotFoundException {
-        return roomDao.update(dto);
+    @Override
+    public boolean update(Room room) throws SQLException, ClassNotFoundException {
+        return false;
     }
 
+    @Override
     public RoomDto search(String roomId) throws SQLException, ClassNotFoundException {
-        return roomDao.search(roomId);
+        return null;
     }
 
+    @Override
     public boolean exist(String roomId) throws SQLException, ClassNotFoundException {
-        return roomDao.exist(roomId);
+        return false;
     }
 
+    @Override
     public boolean delete(String roomId) throws SQLException, ClassNotFoundException {
-        return roomDao.delete(roomId);
+        return false;
     }
 
+    @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
         return null;
     }

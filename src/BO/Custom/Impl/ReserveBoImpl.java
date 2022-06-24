@@ -4,6 +4,7 @@ import BO.Custom.ReserveBo;
 import DAO.Custom.Impl.ReserveDaoImpl;
 import DAO.Custom.ReserveDao;
 import Dto.ReserveDto;
+import Entity.Reserve;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,30 +12,38 @@ import java.util.ArrayList;
 public class ReserveBoImpl implements ReserveBo {
     ReserveDao reserveDao = new ReserveDaoImpl();
 
-    public ArrayList<ReserveDto> getAll() throws SQLException, ClassNotFoundException {
-        return reserveDao.getAll();
+
+    @Override
+    public ArrayList<Reserve> getAll() throws SQLException, ClassNotFoundException {
+       return reserveDao.getAll();
     }
 
-    public boolean save(ReserveDto dto) throws SQLException, ClassNotFoundException {
-        return reserveDao.save(dto);
+    @Override
+    public boolean save(Reserve reserve) throws SQLException, ClassNotFoundException {
+        return false;
     }
 
-    public boolean update(ReserveDto dto) throws SQLException, ClassNotFoundException {
-        return reserveDao.update(dto);
+    @Override
+    public boolean update(Reserve reserve) throws SQLException, ClassNotFoundException {
+        return false;
     }
 
+    @Override
     public ReserveDto search(String reserveId) throws SQLException, ClassNotFoundException {
-        return reserveDao.search(reserveId);
+        return null;
     }
 
+    @Override
     public boolean exist(String reserveId) throws SQLException, ClassNotFoundException {
-        return reserveDao.exist(reserveId);
+        return false;
     }
 
+    @Override
     public boolean delete(String reserveId) throws SQLException, ClassNotFoundException {
-        return reserveDao.delete(reserveId);
+        return false;
     }
 
+    @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
         return null;
     }

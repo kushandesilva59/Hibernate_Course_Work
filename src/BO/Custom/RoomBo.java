@@ -2,16 +2,17 @@ package BO.Custom;
 
 import BO.SuperBo;
 import Dto.RoomDto;
+import Entity.Room;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface RoomBo extends SuperBo {
-    public ArrayList<RoomDto> getAll() throws SQLException, ClassNotFoundException;
+    public ArrayList<Room> getAll() throws SQLException, ClassNotFoundException;
 
-    public boolean save(RoomDto dto) throws SQLException, ClassNotFoundException;
+    public boolean save(Room room) throws SQLException, ClassNotFoundException;
 
-    public boolean update(RoomDto dto) throws SQLException, ClassNotFoundException;
+    public boolean update(Room room) throws SQLException, ClassNotFoundException;
 
     public RoomDto search(String roomId) throws SQLException, ClassNotFoundException ;
 

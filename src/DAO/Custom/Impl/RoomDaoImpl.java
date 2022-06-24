@@ -2,28 +2,30 @@ package DAO.Custom.Impl;
 
 import DAO.Custom.RoomDao;
 import Dto.RoomDto;
+import Entity.Room;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RoomDaoImpl implements RoomDao {
+
     @Override
-    public ArrayList<RoomDto> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Room> getAll() throws SQLException, ClassNotFoundException {
         return null;
     }
 
     @Override
-    public boolean save(RoomDto dto) throws SQLException, ClassNotFoundException {
+    public boolean save(Room dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 
     @Override
-    public boolean update(RoomDto dto) throws SQLException, ClassNotFoundException {
+    public boolean update(Room dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 
     @Override
-    public RoomDto search(String s) throws SQLException, ClassNotFoundException {
+    public Room search(String s) throws SQLException, ClassNotFoundException {
         return null;
     }
 
