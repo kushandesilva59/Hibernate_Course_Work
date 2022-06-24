@@ -1,16 +1,22 @@
 package Controller;
 
 import DAO.Custom.Impl.UserDaoImpl;
+import Dto.ReserveDto;
 import Dto.UserDto;
+import Entity.Reserve;
 import Entity.User;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -61,8 +67,6 @@ public class CreateAccountFormController {
         }else{
             new Alert(Alert.AlertType.WARNING,"Password not matched!..").show();
         }
-
-
     }
 
     public void keyReleasedOnAction(KeyEvent keyEvent) {
@@ -131,7 +135,11 @@ public class CreateAccountFormController {
                 btnAddAccount.setDisable(false);
             }
         }
+    }
 
-
+    public void cancelOnAction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) createAccountContext.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/LoginForm.fxml"))));
+        stage.show();
     }
 }

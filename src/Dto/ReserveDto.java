@@ -1,7 +1,13 @@
 package Dto;
 
-import java.sql.Date;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+@NoArgsConstructor
+@Data
+@AllArgsConstructor
 public class ReserveDto {
     private String reserveId;
     private Date date;
@@ -9,65 +15,4 @@ public class ReserveDto {
     private String studentId;
     private String roomId;
 
-    public ReserveDto() {
-    }
-
-    public ReserveDto(String reserveId, Date date, double keyMoney, String studentId, String roomId) {
-        this.reserveId = reserveId;
-        this.date = date;
-        this.keyMoney = keyMoney;
-        this.studentId = studentId;
-        this.roomId = roomId;
-    }
-
-    public String getReserveId() {
-        return reserveId;
-    }
-
-    public void setReserveId(String reserveId) {
-        this.reserveId = reserveId;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public double getKeyMoney() {
-        return keyMoney;
-    }
-
-    public void setKeyMoney(double keyMoney) {
-        this.keyMoney = keyMoney;
-    }
-
-    public String getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
-
-    public String getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(String roomId) {
-        this.roomId = roomId;
-    }
-
-    @Override
-    public String toString() {
-        return "Reserve{" +
-                "reserveId='" + reserveId + '\'' +
-                ", date=" + date +
-                ", keyMoney=" + keyMoney +
-                ", studentId='" + studentId + '\'' +
-                ", roomId='" + roomId + '\'' +
-                '}';
-    }
 }

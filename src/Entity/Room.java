@@ -3,7 +3,6 @@ package Entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,7 @@ public class Room {
     @Id
     private String roomId;
     private String type;
-    private double monthlyRent;
+    private double keyMoney;
     private int qty;
 
     @ManyToMany

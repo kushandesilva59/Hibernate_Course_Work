@@ -62,10 +62,11 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="btnAddAccount" layoutX="366.0" layoutY="483.0" mnemonicParsing="false" onAction="#addAccountOnAction" prefHeight="31.0" prefWidth="168.0" text="Add Account" />
+      <Button fx:id="btnAddAccount" layoutX="337.0" layoutY="496.0" mnemonicParsing="false" onAction="#addAccountOnAction" prefHeight="31.0" prefWidth="151.0" text="Add Account" />
       <PasswordField fx:id="pwdPassword" layoutX="339.0" layoutY="369.0" prefHeight="31.0" prefWidth="338.0" />
       <PasswordField fx:id="pwdConfirmPassword" layoutX="339.0" layoutY="417.0" onKeyReleased="#checkPasswordOnAction" prefHeight="31.0" prefWidth="338.0" />
       <JFXRadioButton fx:id="femaleButton" layoutX="457.0" layoutY="258.0" text="Female" />
       <JFXRadioButton fx:id="maleButton" layoutX="342.0" layoutY="258.0" text="Male" />
+      <Button layoutX="518.0" layoutY="496.0" mnemonicParsing="false" onAction="#cancelOnAction" prefHeight="31.0" prefWidth="159.0" text="Cancel" />
    </children>
 </AnchorPane>
