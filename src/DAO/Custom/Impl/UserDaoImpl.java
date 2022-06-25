@@ -105,26 +105,19 @@ public class UserDaoImpl implements UserDao {
         session.close();
 
         String newUserId = "";
-        int i = 0;
 
         String lastUserId = list.toString();
         String[] split = lastUserId.split("[A-z]");
-        for (int j = 0; j < split.length; j++) {
-            newUserId = split[j];
-            i++;
-        }
-
-        Integer integer = Integer.valueOf(newUserId);
-        integer =  integer+1;
-        newUserId = String.valueOf(integer);
-
+        Integer integer = Integer.valueOf(split[2]);
+        ++integer;
+       
         if(!list.isEmpty()){
-            if (i>=100) {
-                newUserId = "U" + newUserId ;
-            }else if(i>=10){
-                newUserId = "U0" + newUserId;
+            if (integer>=100) {
+                newUserId = "U" + String.valueOf(integer) ;
+            }else if(integer>=10){
+                newUserId = "U0" + String.valueOf(integer);
             }else{
-                newUserId = "U00" + newUserId;
+                newUserId = "U00" + String.valueOf(integer);
             }
             return newUserId;
 

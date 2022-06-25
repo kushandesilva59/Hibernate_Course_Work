@@ -12,8 +12,8 @@ public class MainFormController {
 
     public AnchorPane mainFormContext;
 
-    public void logOutOnAction(ActionEvent event) {
-
+    public void logOutOnAction(ActionEvent event) throws IOException {
+        loadUi("LoginForm");
     }
 
     public void makeReservationOnAction(ActionEvent event) {
