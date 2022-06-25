@@ -1,6 +1,7 @@
 package Controller;
 
 import DAO.Custom.Impl.UserDaoImpl;
+import DAO.Custom.UserDao;
 import Dto.ReserveDto;
 import Dto.UserDto;
 import Entity.Reserve;
@@ -37,6 +38,9 @@ public class CreateAccountFormController {
     public JFXRadioButton femaleButton;
     private ToggleGroup group = new ToggleGroup();
 
+    UserDao userDao = new UserDaoImpl();
+
+
 
     public void initialize(){
             btnAddAccount.setDisable(true);
@@ -58,10 +62,8 @@ public class CreateAccountFormController {
         String password = pwdPassword.getText();
         String confirmation = pwdConfirmPassword.getText();
         if(password.equals(confirmation)){
-            User u001 = new User("U001", name, address, contact, Date.valueOf(birthDay), gender, password);
+            User u001 = new User(userDao.generateNewID(), name, address, contact, Date.valueOf(birthDay), gender, password);
 
-
-            UserDaoImpl userDao = new UserDaoImpl();
             userDao.save(u001);
 
         }else{

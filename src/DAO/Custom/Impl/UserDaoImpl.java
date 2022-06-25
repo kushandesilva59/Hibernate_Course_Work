@@ -100,22 +100,33 @@ public class UserDaoImpl implements UserDao {
     public String generateNewID() throws SQLException, ClassNotFoundException {
         Session session = FactoryConfiguration.getInstance().getSession();
 
-        Query query = session.createQuery("SELECT userId FROM User ORDER BY userId DESC LIMIT 1 ");
+        Query query = session.createQuery("SELECT userId FROM User ORDER BY userId DESC").setMaxResults(1);
         List list = query.list();
         session.close();
 
-        String newVersion;
+        String newUserId = "";
+        int i = 0;
 
-        String version = list.toString();
-        int i = (Integer.parseInt(version.substring(1, version.length()))+1);
+        String lastUserId = list.toString();
+        String[] split = lastUserId.split("[A-z]");
+        for (int j = 0; j < split.length; j++) {
+            newUserId = split[j];
+            i++;
+        }
+
+        Integer integer = Integer.valueOf(newUserId);
+        integer =  integer+1;
+        newUserId = String.valueOf(integer);
 
         if(!list.isEmpty()){
-            if (i==100) {
-                newVersion = "U0" +  i;
-            }else {
-                newVersion = "U00" + i;
+            if (i>=100) {
+                newUserId = "U" + newUserId ;
+            }else if(i>=10){
+                newUserId = "U0" + newUserId;
+            }else{
+                newUserId = "U00" + newUserId;
             }
-            return newVersion;
+            return newUserId;
 
         }else{
             return "U001";

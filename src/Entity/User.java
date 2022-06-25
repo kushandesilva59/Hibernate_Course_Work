@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Date;
 @NoArgsConstructor
-@Data
 @AllArgsConstructor
+@Data
 @Entity
 public class User {
     @Id
