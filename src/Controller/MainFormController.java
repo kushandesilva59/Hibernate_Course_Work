@@ -32,4 +32,8 @@ public class MainFormController {
         Stage stage = (Stage) mainFormContext.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/"+location+".fxml"))));
     }
+
+    public void addRoomOnAction(ActionEvent event) {
+        
+    }
 }
