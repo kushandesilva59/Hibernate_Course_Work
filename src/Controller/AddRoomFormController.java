@@ -2,11 +2,16 @@ package Controller;
 
 import Util.FactoryConfiguration;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import org.hibernate.Session;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.regex.Pattern;
 
@@ -22,11 +27,12 @@ public class AddRoomFormController {
     }
 
     public void addOnAction(ActionEvent event) {
+        Session session = FactoryConfiguration.getInstance().getSession();
 
     }
 
-    public void cancelOnAction(ActionEvent event) {
-
+    public void cancelOnAction(ActionEvent event) throws IOException {
+        loadUi("MainForm");
     }
 
     public void keyReleasedOnAction(KeyEvent keyEvent) {
@@ -68,5 +74,10 @@ public class AddRoomFormController {
         if(textField.getLength() > 0){
             textField.setStyle("-fx-border-color: #ff001b");
         }
+    }
+
+    public void loadUi(String location) throws IOException {
+        Stage stage = (Stage) addRoomContext.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/"+location+".fxml"))));
     }
 }
