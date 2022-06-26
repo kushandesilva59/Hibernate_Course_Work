@@ -34,6 +34,6 @@ public class MainFormController {
     }
 
     public void addRoomOnAction(ActionEvent event) {
-        
+
     }
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="addRoomContext" prefHeight="375.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddRoomFormController">
+   <children>
+      <Label layoutX="24.0" layoutY="32.0" text="Add Room Form">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Separator layoutX="24.0" layoutY="72.0" prefHeight="3.0" prefWidth="568.0" />
+      <TextField fx:id="txtType" layoutX="323.0" layoutY="106.0" prefHeight="31.0" prefWidth="252.0" />
+      <TextField fx:id="txtKeyMoney" layoutX="323.0" layoutY="170.0" prefHeight="31.0" prefWidth="252.0" />
+      <TextField fx:id="txtQty" layoutX="323.0" layoutY="233.0" prefHeight="31.0" prefWidth="252.0" />
+      <Button layoutX="379.0" layoutY="305.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="31.0" prefWidth="87.0" text="Add " />
+      <Button layoutX="488.0" layoutY="305.0" mnemonicParsing="false" onAction="#cancelOnAction" prefHeight="31.0" prefWidth="87.0" text="Cancel" />
+      <Label layoutX="198.0" layoutY="109.0" prefHeight="26.0" prefWidth="109.0" text="Room Type">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="198.0" layoutY="175.0" prefHeight="26.0" prefWidth="109.0" text="Key Money">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="198.0" layoutY="236.0" prefHeight="26.0" prefWidth="109.0" text="Room qty">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
