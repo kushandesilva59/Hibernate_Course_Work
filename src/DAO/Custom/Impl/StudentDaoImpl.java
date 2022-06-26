@@ -4,16 +4,17 @@ import DAO.Custom.StudentDao;
 import Dto.StudentDto;
 import Entity.Student;
 import Util.FactoryConfiguration;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDaoImpl implements StudentDao {
-
-
     @Override
     public ArrayList<Student> getAll() throws SQLException, ClassNotFoundException {
         ArrayList <Student> students = new ArrayList();
@@ -21,7 +22,7 @@ public class StudentDaoImpl implements StudentDao {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        List <Student>from_student = session.createQuery("FROM Student ").list();
+        List <Student> from_student = session.createQuery("FROM Student ").list();
         while(from_student.isEmpty()){
             for(Student student : from_student){
                students.add(student);
@@ -92,5 +93,23 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
         return null;
+    }
+
+    public ObservableList<String> getAllStudentIds(){
+        ObservableList <String> studentIds = FXCollections.observableArrayList();
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        List <String> from_student = session.createQuery("SELECT studentId FROM Student ").list();
+        while(from_student.isEmpty()){
+            for(String studentId : from_student){
+                studentIds.add(studentId);
+            }
+        }
+
+        transaction.commit();
+        session.close();
+        return studentIds;
     }
 }
