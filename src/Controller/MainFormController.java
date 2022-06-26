@@ -16,8 +16,8 @@ public class MainFormController {
         loadUi("LoginForm");
     }
 
-    public void makeReservationOnAction(ActionEvent event) {
-
+    public void makeReservationOnAction(ActionEvent event) throws IOException {
+        loadUi("MakeReservationForm");
     }
 
     public void changePasswordOnAction(ActionEvent event) {

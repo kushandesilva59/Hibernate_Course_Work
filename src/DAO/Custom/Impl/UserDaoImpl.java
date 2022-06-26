@@ -110,7 +110,7 @@ public class UserDaoImpl implements UserDao {
         String[] split = lastUserId.split("[A-z]");
         Integer integer = Integer.valueOf(split[2]);
         ++integer;
-       
+
         if(!list.isEmpty()){
             if (integer>=100) {
                 newUserId = "U" + String.valueOf(integer) ;

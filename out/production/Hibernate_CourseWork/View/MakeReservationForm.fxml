@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="makeReservationContext" prefHeight="662.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MakeReservationFormController">
+   <children>
+      <Label layoutX="27.0" layoutY="24.0" text="Make Reservation">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Separator layoutX="27.0" layoutY="53.0" prefHeight="0.0" prefWidth="847.0" />
+      <ComboBox fx:id="comboStudentIds" layoutX="47.0" layoutY="253.0" prefWidth="150.0" promptText="Student Id" />
+      <ComboBox fx:id="comboRooms" layoutX="47.0" layoutY="466.0" prefWidth="150.0" promptText="Room Type" />
+      <Label layoutX="603.0" layoutY="78.0" prefHeight="26.0" prefWidth="55.0" text="Date :">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDate" layoutX="664.0" layoutY="78.0" prefHeight="26.0" prefWidth="209.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtStudentName" layoutX="47.0" layoutY="340.0" />
+      <JFXTextField fx:id="txtStudentAddress" layoutX="265.0" layoutY="340.0" />
+      <JFXTextField fx:id="txtStudentContact" layoutX="473.0" layoutY="340.0" />
+      <JFXTextField fx:id="txtStudentBDay" layoutX="684.0" layoutY="340.0" />
+      <JFXButton alignment="TOP_CENTER" contentDisplay="TOP" layoutX="287.0" layoutY="104.0" onAction="#addNewStudentOnAction" prefHeight="179.0" prefWidth="214.0" text="Add New Student">
+         <graphic>
+            <ImageView fitHeight="148.0" fitWidth="194.0" pickOnBounds="true" preserveRatio="true" />
+         </graphic>
+      </JFXButton>
+      <Separator layoutX="27.0" layoutY="404.0" prefHeight="0.0" prefWidth="847.0" />
+      <JFXTextField fx:id="txtRoomId" layoutX="86.0" layoutY="534.0" />
+      <JFXTextField fx:id="txtRoomKeyMoney" layoutX="350.0" layoutY="534.0" />
+      <JFXTextField fx:id="txtRoomQTY" layoutX="600.0" layoutY="534.0" />
+      <Button layoutX="641.0" layoutY="601.0" mnemonicParsing="false" onAction="#reserveOnAction" prefHeight="31.0" prefWidth="102.0" text="Reserve" />
+      <Button layoutX="772.0" layoutY="601.0" mnemonicParsing="false" onAction="#cancelOnAction" prefHeight="31.0" prefWidth="102.0" text="Cancel" />
+   </children>
+</AnchorPane>
