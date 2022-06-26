@@ -8,15 +8,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainFormContext" prefHeight="430.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainFormController">
+<AnchorPane fx:id="mainFormContext" prefHeight="475.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainFormController">
    <children>
       <Label layoutX="26.0" layoutY="27.0" text="Main Form">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Separator layoutX="26.0" layoutY="62.0" prefHeight="0.0" prefWidth="620.0" />
-      <Button layoutX="580.0" layoutY="385.0" mnemonicParsing="false" onAction="#logOutOnAction" text="Log Out" />
+      <Separator layoutX="26.0" layoutY="61.0" prefHeight="4.0" prefWidth="762.0" />
+      <Button layoutX="708.0" layoutY="410.0" mnemonicParsing="false" onAction="#logOutOnAction" text="Log Out" />
       <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="37.0" layoutY="136.0" onAction="#makeReservationOnAction" prefHeight="187.0" prefWidth="141.0" text="Make Reservation">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
@@ -27,7 +27,12 @@
             <ImageView fitHeight="150.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
       </JFXButton>
-      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="456.0" layoutY="136.0" onAction="#findSStudentOnAction" prefHeight="187.0" prefWidth="141.0" text="Find Student">
+      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="436.0" layoutY="136.0" onAction="#findSStudentOnAction" prefHeight="187.0" prefWidth="141.0" text="Find Student">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+         </graphic>
+      </JFXButton>
+      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="627.0" layoutY="136.0" onAction="#addRoomOnAction" prefHeight="187.0" prefWidth="141.0" text="Add Room">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>

@@ -33,7 +33,7 @@ public class MainFormController {
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/"+location+".fxml"))));
     }
 
-    public void addRoomOnAction(ActionEvent event) {
-
+    public void addRoomOnAction(ActionEvent event) throws IOException {
+        loadUi("AddRoomForm");
     }
 }
