@@ -39,4 +39,8 @@ public class UserBoImpl implements UserBo {
     public String generateNewID() throws SQLException, ClassNotFoundException {
         return userDao.generateNewID();
     }
+
+    public boolean checkOldPassword(User user,String id){
+        return userDao.checkOldPassword(user,id);
+    }
 }

@@ -21,4 +21,6 @@ public interface UserBo extends SuperBo {
     public boolean delete(String userId) throws SQLException, ClassNotFoundException;
 
     public String generateNewID() throws SQLException, ClassNotFoundException;
+
+    public boolean checkOldPassword(User user,String id);
 }
