@@ -125,4 +125,12 @@ public class UserDaoImpl implements UserDao {
             return "U001";
         }
     }
+
+    public boolean checkOldPassword(User user,String id){
+        if(user.getPassword().equals(id)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

@@ -21,10 +21,15 @@ public class LoginFormController {
 
     public void loginOnAction(ActionEvent event) throws IOException {
         loadUi("MainForm");
+
     }
 
 
     public void loadUi(String location) throws IOException {
+        if(location.equals("MainForm")){
+            MainFormController mainFormController = new MainFormController();
+            mainFormController.setUserId(txtUsername.getText());
+        }
         Stage stage = (Stage) loginFormContext.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/"+location+".fxml"))));
     }
@@ -34,7 +39,7 @@ public class LoginFormController {
     }
 
     public void showPasswordOnAction(MouseEvent mouseEvent) {
-        
+
     }
 
 }

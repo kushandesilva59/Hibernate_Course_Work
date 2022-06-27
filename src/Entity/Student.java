@@ -24,4 +24,6 @@ public class Student {
 
     @ManyToMany(mappedBy = "studentList")
     private List<Room> roomList = new ArrayList();
+
+
 }
