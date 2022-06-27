@@ -43,4 +43,8 @@ public class UserBoImpl implements UserBo {
     public boolean checkOldPassword(User user,String id){
         return userDao.checkOldPassword(user,id);
     }
+
+    public boolean passwordConfirmed(String newPassword,String confirmation){
+        return userDao.passwordConfirmed(newPassword,confirmation);
+    }
 }

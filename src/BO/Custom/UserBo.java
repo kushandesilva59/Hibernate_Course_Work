@@ -23,4 +23,6 @@ public interface UserBo extends SuperBo {
     public String generateNewID() throws SQLException, ClassNotFoundException;
 
     public boolean checkOldPassword(User user,String id);
+
+    public boolean passwordConfirmed(String newPassword,String confirmation);
 }
