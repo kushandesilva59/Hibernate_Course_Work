@@ -20,8 +20,8 @@ public class MainFormController {
         loadUi("MakeReservationForm");
     }
 
-    public void changePasswordOnAction(ActionEvent event) {
-
+    public void changePasswordOnAction(ActionEvent event) throws IOException {
+        loadUi("ChangePasswordForm");
     }
 
     public void findSStudentOnAction(ActionEvent event) {

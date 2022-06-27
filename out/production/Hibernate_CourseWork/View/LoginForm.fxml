@@ -17,25 +17,25 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
+      <JFXTextField fx:id="txtUsername" layoutX="135.0" layoutY="89.0" prefHeight="31.0" prefWidth="409.0" />
       <Separator layoutX="14.0" layoutY="56.0" prefHeight="3.0" prefWidth="561.0" />
       <Button layoutX="229.0" layoutY="222.0" mnemonicParsing="false" onAction="#loginOnAction" prefHeight="31.0" prefWidth="151.0" text="Log in" />
+      <ImageView fitHeight="31.0" fitWidth="41.0" layoutX="104.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Asserts/outline_lock_black_24dp.png" />
+         </image>
+      </ImageView>
       <Label layoutX="274.0" layoutY="184.0" onMouseClicked="#createAccountOnActionLabel" text="You haven't account ? Create Account here !">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <ImageView fitHeight="31.0" fitWidth="41.0" layoutX="135.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+      <JFXPasswordField fx:id="pwdPassword" layoutX="135.0" layoutY="144.0" prefHeight="31.0" prefWidth="409.0" />
+      <ImageView fitHeight="31.0" fitWidth="41.0" layoutX="104.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Asserts/round_account_circle_black_24dp.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="41.0" layoutX="135.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Asserts/outline_lock_black_24dp.png" />
-         </image>
-      </ImageView>
-      <JFXPasswordField fx:id="pwdPassword" layoutX="135.0" layoutY="144.0" prefHeight="31.0" prefWidth="409.0" />
-      <JFXTextField fx:id="txtUsername" layoutX="135.0" layoutY="89.0" prefHeight="31.0" prefWidth="409.0" />
       <Button layoutX="493.0" layoutY="145.0" mnemonicParsing="false" onMousePressed="#showPasswordOnAction" prefHeight="3.0" prefWidth="24.0" style="-fx-background-color: white;">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
