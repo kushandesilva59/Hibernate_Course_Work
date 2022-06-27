@@ -1,5 +1,8 @@
 package Controller;
 
+import BO.Custom.Impl.RoomBoImpl;
+import BO.Custom.RoomBo;
+import Entity.Room;
 import Util.FactoryConfiguration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +13,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.regex.Pattern;
 
@@ -26,8 +31,22 @@ public class AddRoomFormController {
         btnAdd.setDisable(true);
     }
 
-    public void addOnAction(ActionEvent event) {
+    public void addOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+        RoomBo roomBo = new RoomBoImpl();
+
+        Room room = new Room();
+        room.setRoomId(roomBo.generateNewID());
+        room.setType(txtType.getText());
+        room.setKeyMoney(Double.valueOf(txtKeyMoney.getText()));
+        room.setQty(Integer.valueOf(txtQty.getText()));
+
         Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+
+        session.save(room);
+        transaction.commit();
+        session.close();
 
     }
 

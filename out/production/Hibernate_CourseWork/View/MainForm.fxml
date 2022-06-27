@@ -4,37 +4,50 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainFormContext" prefHeight="475.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainFormController">
+<AnchorPane fx:id="mainFormContext" prefHeight="475.0" prefWidth="815.0" style="-fx-background-color: #2c3e50;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainFormController">
    <children>
-      <Label layoutX="26.0" layoutY="27.0" text="Main Form">
+      <Label layoutX="26.0" layoutY="27.0" text="Main Form" textFill="#bdc3c7">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
       <Separator layoutX="26.0" layoutY="61.0" prefHeight="4.0" prefWidth="762.0" />
       <Button layoutX="708.0" layoutY="410.0" mnemonicParsing="false" onAction="#logOutOnAction" text="Log Out" />
-      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="37.0" layoutY="136.0" onAction="#makeReservationOnAction" prefHeight="187.0" prefWidth="141.0" text="Make Reservation">
+      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="37.0" layoutY="136.0" onAction="#makeReservationOnAction" prefHeight="187.0" prefWidth="141.0" text="Make Reservation" textFill="#ecf0f1">
          <graphic>
-            <ImageView fitHeight="150.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="150.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Asserts/make-bed-clipart-xl.png" />
+               </image></ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="231.0" layoutY="136.0" onAction="#changePasswordOnAction" prefHeight="187.0" prefWidth="141.0" text="Change Password">
+      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="231.0" layoutY="136.0" onAction="#changePasswordOnAction" prefHeight="187.0" prefWidth="141.0" text="Change Password" textFill="#ecf0f1">
          <graphic>
-            <ImageView fitHeight="150.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="150.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Asserts/closed-lock-clipart-xl.png" />
+               </image></ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="436.0" layoutY="136.0" onAction="#findSStudentOnAction" prefHeight="187.0" prefWidth="141.0" text="Find Student">
+      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="436.0" layoutY="136.0" onAction="#findSStudentOnAction" prefHeight="187.0" prefWidth="141.0" text="Find Student" textFill="#ecf0f1">
          <graphic>
-            <ImageView fitHeight="150.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="150.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Asserts/schoolboy-student-clipart-lg.png" />
+               </image></ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="627.0" layoutY="136.0" onAction="#addRoomOnAction" prefHeight="187.0" prefWidth="141.0" text="Add Room">
+      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="627.0" layoutY="136.0" onAction="#addRoomOnAction" prefHeight="187.0" prefWidth="141.0" text="Add Room" textFill="#ecf0f1">
          <graphic>
-            <ImageView fitHeight="150.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="150.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Asserts/couch-and-lamp-emoji-clipart-lg.png" />
+               </image></ImageView>
          </graphic>
       </JFXButton>
    </children>

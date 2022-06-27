@@ -88,31 +88,26 @@ public class RoomDaoImpl implements RoomDao {
 
     @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
+        String newId;
         Session session = FactoryConfiguration.getInstance().getSession();
 
         Query query = session.createQuery("SELECT roomId FROM Room ORDER BY roomId DESC").setMaxResults(1);
-        List list = query.list();
+        List <String> list = query.list();
         session.close();
+        String id = list.toString();
 
-        String newUserId = "";
+        if(list != null){
+            int i = Integer.parseInt(id.substring(2)+1);
 
-        String lastUserId = list.toString();
-        String[] split = lastUserId.split("[A-z]");
-        Integer integer = Integer.valueOf(split[2]);
-        ++integer;
-
-        if(!list.isEmpty()){
-            if (integer>=100) {
-                newUserId = "R" + String.valueOf(integer) ;
-            }else if(integer>=10){
-                newUserId = "R0" + String.valueOf(integer);
-            }else{
-                newUserId = "R00" + String.valueOf(integer);
+            if(i >= 10){
+                newId = "R0"+i;
+            }else {
+                newId = "R00"+i;
             }
-            return newUserId;
-
+            return newId;
         }else{
             return "R001";
         }
+
     }
 }

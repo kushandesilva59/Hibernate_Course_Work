@@ -38,6 +38,7 @@ public class MakeReservationFormController {
 
     private void loadStudentIds(){
         StudentBo studentBo = new StudentBoImpl();
+
         if(studentBo.getAllStudentIds() != null){
             comboStudentIds.setItems(studentBo.getAllStudentIds());
         }
