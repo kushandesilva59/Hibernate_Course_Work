@@ -1,7 +1,10 @@
 package Controller;
 
+import BO.Custom.Impl.RoomBoImpl;
 import BO.Custom.Impl.StudentBoImpl;
+import BO.Custom.RoomBo;
 import BO.Custom.StudentBo;
+import Entity.Room;
 import Entity.Student;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -11,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -21,7 +25,6 @@ import java.util.ArrayList;
 public class MakeReservationFormController {
 
     public AnchorPane makeReservationContext;
-    public ComboBox <String>comboStudentIds;
     public ComboBox <String>comboRooms;
     public Label lblDate;
     public JFXTextField txtStudentName;
@@ -31,17 +34,23 @@ public class MakeReservationFormController {
     public JFXTextField txtRoomId;
     public JFXTextField txtRoomKeyMoney;
     public JFXTextField txtRoomQTY;
+    public TextField txtStudentId;
+    RoomBo roomBo = new RoomBoImpl();
 
-    public void initialize(){
-        loadStudentIds();
+
+    public void initialize() throws SQLException, ClassNotFoundException {
+        loadRooms();
     }
 
-    private void loadStudentIds(){
-        StudentBo studentBo = new StudentBoImpl();
+    private void loadRooms() throws SQLException, ClassNotFoundException {
+        ObservableList <String> roomNames = FXCollections.observableArrayList();
+        ArrayList<Room> all = roomBo.getAll();
 
-        if(studentBo.getAllStudentIds() != null){
-            comboStudentIds.setItems(studentBo.getAllStudentIds());
+        for(Room room : all){
+            roomNames.add(room.getType());
         }
+
+        comboRooms.setItems(roomNames);
     }
 
     public void addNewStudentOnAction(ActionEvent event) {

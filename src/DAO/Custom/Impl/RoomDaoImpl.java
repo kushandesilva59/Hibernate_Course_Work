@@ -20,11 +20,10 @@ public class RoomDaoImpl implements RoomDao {
 
         Session session = FactoryConfiguration.getInstance().getSession();
         List <Room>from_room = session.createQuery("FROM Room ").list();
-        while(from_room.isEmpty()){
             for(Room room : from_room){
                 rooms.add(room);
             }
-        }
+
         session.close();
         return rooms;
     }

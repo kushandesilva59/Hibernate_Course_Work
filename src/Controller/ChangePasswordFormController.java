@@ -3,7 +3,6 @@ package Controller;
 import BO.Custom.Impl.UserBoImpl;
 import BO.Custom.UserBo;
 import Entity.User;
-import Util.FactoryConfiguration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,11 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class ChangePasswordFormController {
     public AnchorPane changePasswordContext;
@@ -30,9 +26,8 @@ public class ChangePasswordFormController {
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/"+location+".fxml"))));
     }
 
-    public void doneOnAction(ActionEvent event) throws IOException {
-        Session session = FactoryConfiguration.getInstance().getSession();
-        User user = session.get(User.class, userId);
+    public void doneOnAction(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
+        User user = userBo.search(userId);
 
         boolean oldPasswordCorrect = userBo.checkOldPassword(user, pwdOldPassword.getText());
 
@@ -48,7 +43,6 @@ public class ChangePasswordFormController {
         }else{
             new Alert(Alert.AlertType.WARNING,"Old password is incorrect!..").show();
         }
-        session.close();
     }
 
     public void cancelOnAction(ActionEvent event) throws IOException {
