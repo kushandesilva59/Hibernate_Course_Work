@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.io.IOException;
 
@@ -28,14 +29,24 @@ public class ChangePasswordFormController {
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/"+location+".fxml"))));
     }
 
-    public void doneOnAction(ActionEvent event) {
+    public void doneOnAction(ActionEvent event) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         User user = session.get(User.class, userId);
 
-        boolean oldPasswordCorrect = userBo.checkOldPassword(user, userId);
+        boolean oldPasswordCorrect = userBo.checkOldPassword(user, pwdOldPassword.getText());
 
         if(oldPasswordCorrect){
-
+            boolean passwordConfirmed = userBo.passwordConfirmed(pwdNewPassword.getText(), pwdConfirmation.getText());
+            if(passwordConfirmed){
+                Query query = session.createQuery("UPDATE User SET password =: newPassword WHERE userId =: userId");
+                query.
+                new Alert(Alert.AlertType.CONFIRMATION,"Password Changed!..").show();
+                loadUi("MainForm");
+            }else{
+                new Alert(Alert.AlertType.WARNING,"New Password not matched!..").show();
+            }
+        }else{
+            new Alert(Alert.AlertType.WARNING,"Old password is incorrect!..").show();
         }
     }
 
@@ -45,12 +56,5 @@ public class ChangePasswordFormController {
 
     public void setUserId(String id){
         userId = id;
-    }
-
-    public boolean checkOldPassword(){
-        String passwordText = pwdNewPassword.getText();
-        String text = pwdConfirmation.getText();
-
-
     }
 }

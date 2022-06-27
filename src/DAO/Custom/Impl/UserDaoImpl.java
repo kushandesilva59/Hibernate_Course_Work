@@ -141,4 +141,13 @@ public class UserDaoImpl implements UserDao {
             return false;
         }
     }
+
+    public boolean changePassword(User user,String newPassword){
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Query query = session.createQuery("UPDATE User SET password =: newPassword WHERE userId =: userId");
+        query.setParameter("newPassword",newPassword);
+        query.setParameter("userId",user.getUserId());
+        int i = query.executeUpdate();
+        return true;
+    }
 }
