@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.io.IOException;
@@ -38,8 +39,7 @@ public class ChangePasswordFormController {
         if(oldPasswordCorrect){
             boolean passwordConfirmed = userBo.passwordConfirmed(pwdNewPassword.getText(), pwdConfirmation.getText());
             if(passwordConfirmed){
-                Query query = session.createQuery("UPDATE User SET password =: newPassword WHERE userId =: userId");
-                query.
+                userBo.changePassword(user,pwdConfirmation.getText());
                 new Alert(Alert.AlertType.CONFIRMATION,"Password Changed!..").show();
                 loadUi("MainForm");
             }else{
@@ -48,6 +48,7 @@ public class ChangePasswordFormController {
         }else{
             new Alert(Alert.AlertType.WARNING,"Old password is incorrect!..").show();
         }
+        session.close();
     }
 
     public void cancelOnAction(ActionEvent event) throws IOException {
