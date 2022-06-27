@@ -1,5 +1,7 @@
 package Controller;
 
+import BO.Custom.Impl.UserBoImpl;
+import BO.Custom.UserBo;
 import Entity.User;
 import Util.FactoryConfiguration;
 import javafx.event.ActionEvent;
@@ -19,6 +21,7 @@ public class ChangePasswordFormController {
     public PasswordField pwdNewPassword;
     public PasswordField pwdOldPassword;
     private static String userId;
+    UserBo userBo = new UserBoImpl();
 
     public void loadUi(String location) throws IOException {
         Stage stage = (Stage) changePasswordContext.getScene().getWindow();
@@ -29,8 +32,11 @@ public class ChangePasswordFormController {
         Session session = FactoryConfiguration.getInstance().getSession();
         User user = session.get(User.class, userId);
 
+        boolean oldPasswordCorrect = userBo.checkOldPassword(user, userId);
 
+        if(oldPasswordCorrect){
 
+        }
     }
 
     public void cancelOnAction(ActionEvent event) throws IOException {
@@ -42,10 +48,9 @@ public class ChangePasswordFormController {
     }
 
     public boolean checkOldPassword(){
-        if(user.getPassword().equals(pwdOldPassword.getText())){
+        String passwordText = pwdNewPassword.getText();
+        String text = pwdConfirmation.getText();
 
-        }else{
-            new Alert(Alert.AlertType.WARNING,"Something went wrong!..").show();
-        }
+
     }
 }

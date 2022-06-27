@@ -133,4 +133,12 @@ public class UserDaoImpl implements UserDao {
             return false;
         }
     }
+
+    public boolean passwordConfirmed(String newPassword,String confirmation){
+        if(newPassword.equals(confirmation)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
