@@ -5,6 +5,9 @@ import DAO.Custom.Impl.UserDaoImpl;
 import DAO.Custom.UserDao;
 import Dto.UserDto;
 import Entity.User;
+import Util.FactoryConfiguration;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -46,5 +49,9 @@ public class UserBoImpl implements UserBo {
 
     public boolean passwordConfirmed(String newPassword,String confirmation){
         return userDao.passwordConfirmed(newPassword,confirmation);
+    }
+
+    public boolean changePassword(User user,String newPassword){
+        return userDao.changePassword(user,newPassword);
     }
 }

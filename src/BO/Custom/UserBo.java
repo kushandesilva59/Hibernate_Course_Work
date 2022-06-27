@@ -25,4 +25,6 @@ public interface UserBo extends SuperBo {
     public boolean checkOldPassword(User user,String id);
 
     public boolean passwordConfirmed(String newPassword,String confirmation);
+
+    public boolean changePassword(User user,String newPassword);
 }
