@@ -1,14 +1,11 @@
 package DAO.Custom.Impl;
 
 import DAO.Custom.ReserveDao;
-import Dto.ReserveDto;
 import Entity.Reserve;
 import Util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
-import javax.xml.stream.FactoryConfigurationError;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
