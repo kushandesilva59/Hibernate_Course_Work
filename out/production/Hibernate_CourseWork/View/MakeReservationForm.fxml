@@ -34,7 +34,7 @@
       <Button layoutX="639.0" layoutY="466.0" mnemonicParsing="false" onAction="#reserveOnAction" prefHeight="31.0" prefWidth="102.0" text="Reserve" />
       <Button layoutX="769.0" layoutY="466.0" mnemonicParsing="false" onAction="#cancelOnAction" prefHeight="31.0" prefWidth="102.0" text="Cancel" />
       <ComboBox fx:id="comboStudentIds" layoutX="27.0" layoutY="136.0" prefWidth="150.0" promptText="Student ID" />
-      <RadioButton layoutX="725.0" layoutY="395.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="150.0" text="Pay Key Rental">
+      <RadioButton fx:id="radioKeyRental" layoutX="725.0" layoutY="395.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="150.0" text="Pay Key Rental">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

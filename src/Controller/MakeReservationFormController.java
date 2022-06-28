@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -34,12 +35,14 @@ public class MakeReservationFormController {
     public TextField txtRoomKeyMoney;
     public TextField txtRoomQTY;
     public TextField txtRoomType;
+    public RadioButton radioKeyRental;
 
 
     RoomBo roomBo = new RoomBoImpl();
     StudentBo studentBo = new StudentBoImpl();
 
     public void initialize() throws SQLException, ClassNotFoundException {
+        setEditableTextFields();
         loadRooms();
         loadStudentIds();
         comboStudentIds.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
@@ -105,10 +108,22 @@ public class MakeReservationFormController {
 
     public void cancelOnAction(ActionEvent event) throws IOException {
         loadUi("MainForm");
+
+
     }
 
     public void loadUi(String location) throws IOException {
         Stage stage = (Stage) makeReservationContext.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/"+location+".fxml"))));
+    }
+
+    public void setEditableTextFields(){
+        txtStudentName.setEditable(false);
+        txtStudentAddress.setEditable(false);
+        txtStudentContact.setEditable(false);
+        txtStudentBDay.setEditable(false);
+        txtRoomType.setEditable(false);
+        txtRoomKeyMoney.setEditable(false);
+        txtRoomQTY.setEditable(false);
     }
 }
