@@ -50,14 +50,14 @@ public class AddRoomFormController {
         session.save(room);
         Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Room Added!..").showAndWait();
         if(buttonType.get().equals(ButtonType.OK)){
-            loadUi("MainForm");
+            loadUi("ManageRoomsForm");
             transaction.commit();
             session.close();
         }
     }
 
     public void cancelOnAction(ActionEvent event) throws IOException {
-        loadUi("MainForm");
+        loadUi("ManageRoomsForm");
     }
 
     public void keyReleasedOnAction(KeyEvent keyEvent) {
