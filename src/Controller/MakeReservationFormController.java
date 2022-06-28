@@ -5,6 +5,7 @@ import BO.Custom.Impl.StudentBoImpl;
 import BO.Custom.RoomBo;
 import BO.Custom.StudentBo;
 import Entity.Room;
+import Entity.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,19 +31,52 @@ public class MakeReservationFormController {
     public TextField txtStudentBDay;
     public TextField txtStudentContact;
     public TextField txtStudentAddress;
-    public TextField txtRoomId;
     public TextField txtRoomKeyMoney;
     public TextField txtRoomQTY;
+    public TextField txtRoomType;
 
 
     RoomBo roomBo = new RoomBoImpl();
     StudentBo studentBo = new StudentBoImpl();
 
-
-
     public void initialize() throws SQLException, ClassNotFoundException {
         loadRooms();
         loadStudentIds();
+        comboStudentIds.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+        {
+            try {
+                setStudentDetails(newValue);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+
+        comboRooms.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                setRoomDetails(newValue);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void setRoomDetails(String roomId) throws SQLException, ClassNotFoundException {
+        Room room = roomBo.search(roomId);
+        txtRoomType.setText(room.getType());
+        txtRoomKeyMoney.setText("Rs."+String.valueOf(room.getKeyMoney()));
+        txtRoomQTY.setText(String.valueOf(room.getQty()));
+    }
+
+    private void setStudentDetails(String studentId) throws SQLException, ClassNotFoundException {
+        Student student = studentBo.search(studentId);
+        txtStudentName.setText(student.getName());
+        txtStudentAddress.setText(student.getAddress());
+        txtStudentContact.setText(student.getContact());
+        txtStudentBDay.setText(student.getBirthday());
     }
 
     private void loadStudentIds() {
@@ -51,14 +85,14 @@ public class MakeReservationFormController {
     }
 
     private void loadRooms() throws SQLException, ClassNotFoundException {
-        ObservableList <String> roomNames = FXCollections.observableArrayList();
+        ObservableList <String> roomIds = FXCollections.observableArrayList();
         ArrayList<Room> all = roomBo.getAll();
 
         for(Room room : all){
-            roomNames.add(room.getType());
+            roomIds.add(room.getRoomId());
         }
 
-        comboRooms.setItems(roomNames);
+        comboRooms.setItems(roomIds);
     }
 
     public void addNewStudentOnAction(ActionEvent event) throws IOException {

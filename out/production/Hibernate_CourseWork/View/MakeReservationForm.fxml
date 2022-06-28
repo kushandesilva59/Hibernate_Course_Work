@@ -43,7 +43,7 @@
       <TextField fx:id="txtStudentBDay" layoutX="658.0" layoutY="200.0" />
       <TextField fx:id="txtStudentContact" layoutX="446.0" layoutY="200.0" />
       <TextField fx:id="txtStudentAddress" layoutX="237.0" layoutY="200.0" />
-      <TextField fx:id="txtRoomId" layoutX="27.0" layoutY="390.0" prefHeight="31.0" prefWidth="220.0" />
+      <TextField fx:id="txtRoomType" layoutX="27.0" layoutY="390.0" prefHeight="31.0" prefWidth="220.0" />
       <TextField fx:id="txtRoomKeyMoney" layoutX="264.0" layoutY="390.0" />
       <TextField fx:id="txtRoomQTY" layoutX="471.0" layoutY="390.0" />
       <Separator layoutX="690.0" layoutY="390.0" orientation="VERTICAL" prefHeight="31.0" prefWidth="0.0" />
