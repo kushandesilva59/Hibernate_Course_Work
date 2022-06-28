@@ -35,8 +35,6 @@ public class CreateAccountFormController {
 
     UserDao userDao = new UserDaoImpl();
 
-
-
     public void initialize(){
             btnAddAccount.setDisable(true);
             maleButton.setToggleGroup(group);
