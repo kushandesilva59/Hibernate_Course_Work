@@ -57,8 +57,8 @@ public class MakeReservationFormController {
         comboRooms.setItems(roomNames);
     }
 
-    public void addNewStudentOnAction(ActionEvent event) {
-
+    public void addNewStudentOnAction(ActionEvent event) throws IOException {
+        loadUi("AddNewStudentForm");
     }
 
     public void reserveOnAction(ActionEvent event) {
