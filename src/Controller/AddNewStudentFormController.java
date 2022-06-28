@@ -1,5 +1,8 @@
 package Controller;
 
+import BO.Custom.Impl.StudentBoImpl;
+import BO.Custom.StudentBo;
+import Entity.Student;
 import com.jfoenix.controls.JFXDatePicker;
 import javafx.event.ActionEvent;
 import javafx.event.EventType;
@@ -11,11 +14,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
+
 public class AddNewStudentFormController {
+    StudentBo studentBo = new StudentBoImpl();
+
 
     public AnchorPane addNewStudentContext;
     public TextField txtName;
@@ -33,7 +41,25 @@ public class AddNewStudentFormController {
         radioFemale.setToggleGroup(group);
     }
 
-    public void addOnAction(ActionEvent event) {
+    public void addOnAction(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
+        Student student = new Student();
+
+        student.setStudentId(studentBo.generateNewID());
+        student.setName(txtName.getText());
+        student.setAddress(txtAddress.getText());
+        student.setContact(txtContact.getText());
+        student.setBirthday(dateBirthday.getValue().toString());
+
+        RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
+        String gender = selectedRadioButton.getText();
+        student.setGender(gender);
+
+
+        Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Student Saved!..").showAndWait();
+        if(buttonType.get().equals(ButtonType.OK)){
+            studentBo.save(student);
+            loadUi("MakeReservationForm");
+        }
 
     }
 
@@ -90,8 +116,10 @@ public class AddNewStudentFormController {
 
         if(nameStyle.equals("-fx-border-color: #ff001b") || addressStyle.equals("-fx-border-color: #ff001b") || contactStyle.equals("-fx-border-color: #ff001b")){
             new Alert(Alert.AlertType.WARNING,"Something went wrong !..").show();
-        }else{
+
+        }else {
             btnAdd.setDisable(false);
+
         }
     }
 }

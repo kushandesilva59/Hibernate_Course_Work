@@ -1,5 +1,6 @@
 package Util;
 
+import Entity.Reserve;
 import Entity.Room;
 import Entity.Student;
 import Entity.User;
@@ -15,7 +16,8 @@ public class FactoryConfiguration {
         Configuration configuration = new Configuration().configure().
                 addAnnotatedClass(User.class).
                 addAnnotatedClass(Student.class).
-                addAnnotatedClass(Room.class);
+                addAnnotatedClass(Room.class).
+                addAnnotatedClass(Reserve.class);
 
         sessionFactory = configuration.buildSessionFactory();
     }

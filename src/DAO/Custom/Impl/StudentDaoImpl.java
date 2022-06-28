@@ -92,23 +92,43 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        Query query = session.createQuery("SELECT studentId FROM Student ORDER BY studentId DESC").setMaxResults(1);
+        List list = query.list();
+        session.close();
+
+        String newUserId = "";
+
+        String lastUserId = list.toString();
+        String[] split = lastUserId.split("[A-z]");
+        Integer integer = Integer.valueOf(split[2]);
+        ++integer;
+
+        if(!list.isEmpty()){
+            if (integer>=100) {
+                newUserId = "S" + String.valueOf(integer) ;
+            }else if(integer>=10){
+                newUserId = "S0" + String.valueOf(integer);
+            }else{
+                newUserId = "S00" + String.valueOf(integer);
+            }
+            return newUserId;
+
+        }else{
+            return "S001";
+        }
     }
 
     public ObservableList<String> getAllStudentIds(){
         ObservableList <String> studentIds = FXCollections.observableArrayList();
 
         Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
 
         List <String> from_student = session.createQuery("SELECT studentId FROM Student ").list();
-        while(from_student.isEmpty()){
             for(String studentId : from_student){
                 studentIds.add(studentId);
             }
-        }
-
-        transaction.commit();
         session.close();
         return studentIds;
     }

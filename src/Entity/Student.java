@@ -19,11 +19,11 @@ public class Student {
     @Column(columnDefinition = "TEXT")
     private String address;
     private String contact;
-    private Date birthday;
+    private String birthday;
     private String gender;
 
-    @ManyToMany(mappedBy = "studentList")
-    private List<Room> roomList = new ArrayList();
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
+    private List<Reserve> reserveList;
 
 
 }
