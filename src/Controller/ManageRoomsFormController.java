@@ -15,8 +15,8 @@ public class ManageRoomsFormController {
         loadUi("AddRoomForm");
     }
 
-    public void updateRoomOnAction(ActionEvent event) {
-
+    public void updateRoomOnAction(ActionEvent event) throws IOException {
+        loadUi("RoomUpdateDeleteForm");
     }
 
     public void backOnAction(ActionEvent event) throws IOException {
