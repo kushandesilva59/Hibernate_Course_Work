@@ -7,7 +7,9 @@ import Util.FactoryConfiguration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -18,6 +20,7 @@ import org.hibernate.Transaction;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class AddRoomFormController {
@@ -31,7 +34,7 @@ public class AddRoomFormController {
         btnAdd.setDisable(true);
     }
 
-    public void addOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+    public void addOnAction(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         RoomBo roomBo = new RoomBoImpl();
 
         Room room = new Room();
@@ -45,9 +48,12 @@ public class AddRoomFormController {
 
 
         session.save(room);
-        transaction.commit();
-        session.close();
-
+        Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Room Added!..").showAndWait();
+        if(buttonType.get().equals(ButtonType.OK)){
+            loadUi("MainForm");
+            transaction.commit();
+            session.close();
+        }
     }
 
     public void cancelOnAction(ActionEvent event) throws IOException {

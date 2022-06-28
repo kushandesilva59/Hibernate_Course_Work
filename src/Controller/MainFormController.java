@@ -44,4 +44,8 @@ public class MainFormController {
     public void setUserId(String id){
         userId = id;
     }
+
+    public void manageRoomOnAction(ActionEvent event) throws IOException {
+        loadUi("ManageRoomsForm");
+    }
 }

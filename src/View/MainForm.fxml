@@ -42,7 +42,7 @@
                </image></ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="627.0" layoutY="136.0" onAction="#addRoomOnAction" prefHeight="187.0" prefWidth="141.0" text="Add Room" textFill="#ecf0f1">
+      <JFXButton alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="627.0" layoutY="136.0" onAction="#manageRoomOnAction" prefHeight="187.0" prefWidth="141.0" text="Manage Rooms" textFill="#ecf0f1">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
                <image>
