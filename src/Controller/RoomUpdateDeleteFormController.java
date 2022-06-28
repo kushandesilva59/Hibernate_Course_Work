@@ -16,6 +16,8 @@ import javafx.scene.layout.AnchorPane;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.regex.Pattern;
 
 public class RoomUpdateDeleteFormController {
     public AnchorPane updateOrDeleteContext;
@@ -44,6 +46,11 @@ public class RoomUpdateDeleteFormController {
     }
 
     private void setRoomDetails(Room room) {
+        txtKeyRental.setStyle("-fx-border-color: gray");
+        txtRoomId.setStyle("-fx-border-color: gray");
+        txtRoomType.setStyle("-fx-border-color: gray");
+        txtQTY.setStyle("-fx-border-color: gray");
+        btnDelete.setText("Delete");
         txtRoomId.setText(room.getRoomId());
         txtRoomType.setText(room.getType());
         txtKeyRental.setText(String.valueOf(room.getKeyMoney()));
@@ -70,6 +77,42 @@ public class RoomUpdateDeleteFormController {
     }
 
     public void keyReleasedOnAction(KeyEvent keyEvent) {
-
+        validate();
+        btnDelete.setText("Update");
     }
+
+    private void validate(){
+        LinkedHashMap<TextField, Pattern> map = new LinkedHashMap<>();
+
+        Pattern keyMoneyPattern = Pattern.compile("^[0-9]{3,15}$");
+        Pattern qtyPattern = Pattern.compile("^[0-9]{1,4}$");
+
+        map.put(txtKeyRental,keyMoneyPattern);
+        map.put(txtQTY,qtyPattern);
+
+        for(TextField key : map.keySet()){
+            Pattern pattern =  map.get(key);
+            if(!pattern.matcher(key.getText()).matches()){
+                setRed(key);
+            }else{
+                setGreen(key);
+            }
+
+        }
+    }
+
+    private void setGreen(TextField textField) {
+        if(textField.getLength() > 0) {
+            btnDelete.setDisable(false);
+            textField.setStyle("-fx-border-color: #01ff00");
+        }
+    }
+
+    private void setRed(TextField textField) {
+        if(textField.getLength() > 0){
+            btnDelete.setDisable(true);
+            textField.setStyle("-fx-border-color: #ff001b");
+        }
+    }
+
 }
