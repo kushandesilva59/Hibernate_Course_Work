@@ -37,7 +37,7 @@ public class FindStudentsFormController {
         colContact.setCellValueFactory(new PropertyValueFactory("contact"));
         colRoomId.setCellValueFactory(new PropertyValueFactory("roomId"));
         colPayment.setCellValueFactory(new PropertyValueFactory("payment"));
-        
+
         setDetails();
     }
 
