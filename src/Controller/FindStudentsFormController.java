@@ -2,7 +2,10 @@ package Controller;
 
 import BO.Custom.Impl.StudentBoImpl;
 import BO.Custom.StudentBo;
+import DAO.Custom.Impl.QueryDaoImpl;
 import Entity.Student;
+import TM.StudentPaymentTM;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,25 +19,28 @@ import java.io.IOException;
 
 public class FindStudentsFormController {
     public AnchorPane findStudentContext;
-    public TableView <Student>tblStudents;
+    public TableView <StudentPaymentTM>tblStudents;
     public TableColumn colId;
     public TableColumn colName;
-    public TableColumn colAddress;
     public TableColumn colContact;
-    public TableColumn colBirthday;
+    public TableColumn colRoomId;
+    public TableColumn colPayment;
 
     public void initialize(){
         colId.setCellValueFactory(new PropertyValueFactory("studentId"));
-        colName.setCellValueFactory(new PropertyValueFactory("name"));
-        colAddress.setCellValueFactory(new PropertyValueFactory("address"));
+        colName.setCellValueFactory(new PropertyValueFactory("studentName"));
         colContact.setCellValueFactory(new PropertyValueFactory("contact"));
-        colBirthday.setCellValueFactory(new PropertyValueFactory("birthday"));
+        colRoomId.setCellValueFactory(new PropertyValueFactory("roomId"));
+        colPayment.setCellValueFactory(new PropertyValueFactory("payment"));
+
 
         setDetails();
     }
 
     private void setDetails() {
-        StudentBo studentBo = new StudentBoImpl();
+        QueryDaoImpl queryDao = new QueryDaoImpl();
+        ObservableList<StudentPaymentTM> toBePayStudents = queryDao.getToBePayStudents();
+        tblStudents.setItems(toBePayStudents);
     }
 
     public void backOnAction(ActionEvent event) throws IOException {
