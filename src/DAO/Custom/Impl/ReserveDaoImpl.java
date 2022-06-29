@@ -116,5 +116,6 @@ public class ReserveDaoImpl implements ReserveDao {
 
         }else{
             return "RE001";
-        }    }
+        }
+    }
 }
