@@ -151,13 +151,9 @@ public class MakeReservationFormController {
         reserveBo.save(reserve);
         Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Reservation success!..").showAndWait();
         if(buttonType.get().equals(ButtonType.OK)){
-            setQTY(room);
+            roomBo.setRoomQty(roomId);
             loadUi("MakeReservationForm");
         }
-    }
-
-    private void setQTY(Room room) {
-        
     }
 
     public void cancelOnAction(ActionEvent event) throws IOException {

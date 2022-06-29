@@ -5,6 +5,9 @@ import DAO.Custom.Impl.RoomDaoImpl;
 import DAO.Custom.RoomDao;
 import Dto.RoomDto;
 import Entity.Room;
+import Util.FactoryConfiguration;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -45,5 +48,9 @@ public class RoomBoImpl implements RoomBo {
     @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
         return roomDao.generateNewID();
+    }
+
+    public void setRoomQty(String roomId){
+       roomDao.setRoomQty(roomId);
     }
 }

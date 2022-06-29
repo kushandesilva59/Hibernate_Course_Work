@@ -115,4 +115,18 @@ public class RoomDaoImpl implements RoomDao {
             return "R001";
         }
     }
+
+    public void setRoomQty(String roomId){
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Room room = session.find(Room.class, roomId);
+        int qty = room.getQty();
+        qty--;
+        room.setQty(qty);
+
+        Transaction transaction = session.beginTransaction();
+        session.update(room);
+
+        transaction.commit();
+        session.close();
+    }
 }
