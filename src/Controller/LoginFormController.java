@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -16,8 +17,14 @@ import java.io.IOException;
 public class LoginFormController {
 
     public AnchorPane loginFormContext;
-    public JFXPasswordField pwdPassword;
-    public JFXTextField txtUsername;
+    public TextField txtUsername;
+    public PasswordField pwdPassword;
+    public TextField txtPassword;
+    public CheckBox checkBoxShow;
+
+    public void initialize(){
+        txtPassword.setVisible(false);
+    }
 
     public void loginOnAction(ActionEvent event) throws IOException {
         loadUi("MainForm");
@@ -37,8 +44,16 @@ public class LoginFormController {
         loadUi("CreateAccountForm");
     }
 
-    public void showPasswordOnAction(MouseEvent mouseEvent) {
 
+    public void doneOnAction(ActionEvent event) {
+        if(checkBoxShow.isSelected()){
+            String passwordText = pwdPassword.getText();
+            txtPassword.setText(passwordText);
+            pwdPassword.setVisible(false);
+            txtPassword.setVisible(true);
+        }else{
+            txtPassword.setVisible(false);
+            pwdPassword.setVisible(true);
+        }
     }
-
 }

@@ -115,7 +115,7 @@ public class MakeReservationFormController {
         comboStudentIds.setItems(allStudentIds);
     }
 
-    private void loadRooms() throws SQLException, ClassNotFoundException {
+    private void loadRooms(){
         ObservableList <String> roomIds = FXCollections.observableArrayList();
         ObservableList<Room> availableRooms = roomBo.getAvailableRooms();
 

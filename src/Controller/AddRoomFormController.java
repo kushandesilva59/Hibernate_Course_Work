@@ -92,12 +92,14 @@ public class AddRoomFormController {
     private void setGreen(TextField textField) {
         if(textField.getLength() > 0) {
             textField.setStyle("-fx-border-color: #01ff00");
+            btnAdd.setDisable(false);
         }
     }
 
     private void setRed(TextField textField) {
         if(textField.getLength() > 0){
             textField.setStyle("-fx-border-color: #ff001b");
+            btnAdd.setDisable(true);
         }
     }
 
