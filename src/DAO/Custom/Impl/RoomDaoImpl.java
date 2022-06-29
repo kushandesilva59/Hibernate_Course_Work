@@ -49,7 +49,8 @@ public class RoomDaoImpl implements RoomDao {
 
         transaction.commit();
         session.close();
-        return true;    }
+        return true;
+    }
 
     @Override
     public Room search(String roomId) throws SQLException, ClassNotFoundException {

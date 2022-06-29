@@ -6,10 +6,7 @@ import Entity.Room;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -17,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class RoomUpdateDeleteFormController {
@@ -31,6 +29,8 @@ public class RoomUpdateDeleteFormController {
     public TextField txtKeyRental;
     public TextField txtQTY;
     public Button btnDelete;
+    RoomBo roomBo = new RoomBoImpl();
+
 
     public void initialize() throws SQLException, ClassNotFoundException {
         colRoomId.setCellValueFactory(new PropertyValueFactory("roomId"));
@@ -57,8 +57,39 @@ public class RoomUpdateDeleteFormController {
         txtQTY.setText(String.valueOf(room.getQty()));
     }
 
-    public void deleteOnAction(ActionEvent event) {
+    public void deleteOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+        if(btnDelete.getText().equals("Delete")){
+            Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ?").showAndWait();
+            if(buttonType.get().equals(ButtonType.OK)){
 
+                new Alert(Alert.AlertType.CONFIRMATION,"Deleted!..").show();
+                String roomId = txtRoomId.getText();
+                roomBo.delete(roomId);
+                Room room = tblRooms.getSelectionModel().getSelectedItem();
+                tblRooms.getItems().remove(room);
+                tblRooms.refresh();
+                clearText();
+            }
+        }else{
+            String roomId = txtRoomId.getText();
+            String roomType = txtRoomType.getText();
+            double keyRental = Double.valueOf(txtKeyRental.getText());
+            int qty = Integer.valueOf(txtQTY.getText());
+
+            Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Room Updated!..").showAndWait();
+            if(buttonType.get().equals(ButtonType.OK)){
+
+                Room room = tblRooms.getSelectionModel().getSelectedItem();
+                room.setQty(Integer.valueOf(txtQTY.getText()));
+                room.setType(txtRoomType.getText());
+                room.setKeyMoney(Double.valueOf(txtKeyRental.getText()));
+                tblRooms.refresh();
+                clearText();
+                roomBo.update(new Room(roomId,roomType,keyRental,qty));
+
+                tblRooms.refresh();
+            }
+        }
     }
 
     public void backOnAction(ActionEvent event) {
@@ -81,10 +112,10 @@ public class RoomUpdateDeleteFormController {
         btnDelete.setText("Update");
     }
 
-    private void validate(){
+    private Object validate(){
         LinkedHashMap<TextField, Pattern> map = new LinkedHashMap<>();
 
-        Pattern keyMoneyPattern = Pattern.compile("^[0-9]{3,15}$");
+        Pattern keyMoneyPattern = Pattern.compile("^[0-9.]{3,15}$");
         Pattern qtyPattern = Pattern.compile("^[0-9]{1,4}$");
 
         map.put(txtKeyRental,keyMoneyPattern);
@@ -92,13 +123,14 @@ public class RoomUpdateDeleteFormController {
 
         for(TextField key : map.keySet()){
             Pattern pattern =  map.get(key);
-            if(!pattern.matcher(key.getText()).matches()){
-                setRed(key);
-            }else{
+            if(pattern.matcher(key.getText()).matches()){
                 setGreen(key);
+            }else{
+                setRed(key);
+                return key;
             }
-
         }
+        return true;
     }
 
     private void setGreen(TextField textField) {
@@ -113,6 +145,13 @@ public class RoomUpdateDeleteFormController {
             btnDelete.setDisable(true);
             textField.setStyle("-fx-border-color: #ff001b");
         }
+    }
+
+    public void clearText(){
+        txtRoomId.clear();
+        txtRoomType.clear();
+        txtKeyRental.clear();
+        txtQTY.clear();
     }
 
 }

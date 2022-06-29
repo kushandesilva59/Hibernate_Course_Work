@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class RoomBoImpl implements RoomBo {
     RoomDao roomDao = new RoomDaoImpl();
 
-
     @Override
     public ArrayList<Room> getAll() throws SQLException, ClassNotFoundException {
         return roomDao.getAll();

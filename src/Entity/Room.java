@@ -21,4 +21,11 @@ public class Room {
 
     @OneToMany(mappedBy = "room",cascade = CascadeType.ALL)
     private List<Reserve> reserveList;
+
+    public Room(String roomId, String type, double keyMoney, int qty) {
+        this.roomId = roomId;
+        this.type = type;
+        this.keyMoney = keyMoney;
+        this.qty = qty;
+    }
 }

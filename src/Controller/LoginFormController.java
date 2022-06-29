@@ -24,7 +24,6 @@ public class LoginFormController {
 
     }
 
-
     public void loadUi(String location) throws IOException {
         if(location.equals("MainForm")){
             MainFormController mainFormController = new MainFormController();
