@@ -28,8 +28,8 @@ public class MainFormController {
         loadUi("ChangePasswordForm");
     }
 
-    public void findSStudentOnAction(ActionEvent event) {
-
+    public void findSStudentOnAction(ActionEvent event) throws IOException {
+        loadUi("FindStudentsForm");
     }
 
     public void loadUi(String location) throws IOException {
