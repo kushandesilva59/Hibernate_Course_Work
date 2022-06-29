@@ -92,7 +92,6 @@ public class MakeReservationFormController {
 
     private void setDate() {
             LocalDate currentDate = LocalDate.now();
-          //  lblDate.setText(currentDate.getDayOfMonth()+ "-" + currentDate.getMonthValue() + "-" + currentDate.getYear());
             lblDate.setText(currentDate.getYear()+ "-" + currentDate.getMonthValue() + "-" + currentDate.getDayOfMonth());
     }
 
@@ -118,9 +117,9 @@ public class MakeReservationFormController {
 
     private void loadRooms() throws SQLException, ClassNotFoundException {
         ObservableList <String> roomIds = FXCollections.observableArrayList();
-        ArrayList<Room> all = roomBo.getAll();
+        ObservableList<Room> availableRooms = roomBo.getAvailableRooms();
 
-        for(Room room : all){
+        for(Room room : availableRooms){
             roomIds.add(room.getRoomId());
         }
 

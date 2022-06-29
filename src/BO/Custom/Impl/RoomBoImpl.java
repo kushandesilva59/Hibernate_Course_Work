@@ -6,11 +6,14 @@ import DAO.Custom.RoomDao;
 import Dto.RoomDto;
 import Entity.Room;
 import Util.FactoryConfiguration;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RoomBoImpl implements RoomBo {
     RoomDao roomDao = new RoomDaoImpl();
@@ -52,5 +55,9 @@ public class RoomBoImpl implements RoomBo {
 
     public void setRoomQty(String roomId){
        roomDao.setRoomQty(roomId);
+    }
+
+    public ObservableList<Room> getAvailableRooms(){
+        return roomDao.getAvailableRooms();
     }
 }

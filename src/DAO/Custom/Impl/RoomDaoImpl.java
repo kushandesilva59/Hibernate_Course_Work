@@ -4,6 +4,8 @@ import DAO.Custom.RoomDao;
 import Dto.RoomDto;
 import Entity.Room;
 import Util.FactoryConfiguration;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -128,5 +130,17 @@ public class RoomDaoImpl implements RoomDao {
 
         transaction.commit();
         session.close();
+    }
+
+    public ObservableList<Room> getAvailableRooms(){
+        ObservableList<Room> rooms = FXCollections.observableArrayList();
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        List<Room> list = session.createQuery("FROM Room WHERE qty > 0 ").list();
+
+        for(Room room : list){
+            rooms.add(room);
+        }
+        return rooms;
     }
 }
