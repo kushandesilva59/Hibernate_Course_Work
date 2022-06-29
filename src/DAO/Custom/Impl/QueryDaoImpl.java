@@ -1,5 +1,6 @@
 package DAO.Custom.Impl;
 
+import DAO.Custom.QueryDao;
 import Entity.Reserve;
 import Entity.Student;
 import TM.StudentPaymentTM;
@@ -11,7 +12,7 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class QueryDaoImpl {
+public class QueryDaoImpl implements QueryDao {
     public ObservableList<StudentPaymentTM> getToBePayStudents(){
         ObservableList<StudentPaymentTM> students = FXCollections.observableArrayList();
 

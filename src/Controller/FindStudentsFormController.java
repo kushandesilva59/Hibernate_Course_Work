@@ -1,8 +1,11 @@
 package Controller;
 
+import BO.Custom.Impl.QueryBoImpl;
 import BO.Custom.Impl.StudentBoImpl;
+import BO.Custom.QueryBo;
 import BO.Custom.StudentBo;
 import DAO.Custom.Impl.QueryDaoImpl;
+import DAO.Custom.QueryDao;
 import Entity.Student;
 import TM.StudentPaymentTM;
 import javafx.collections.ObservableList;
@@ -25,6 +28,8 @@ public class FindStudentsFormController {
     public TableColumn colContact;
     public TableColumn colRoomId;
     public TableColumn colPayment;
+    QueryBo queryBo = new QueryBoImpl();
+
 
     public void initialize(){
         colId.setCellValueFactory(new PropertyValueFactory("studentId"));
@@ -32,14 +37,12 @@ public class FindStudentsFormController {
         colContact.setCellValueFactory(new PropertyValueFactory("contact"));
         colRoomId.setCellValueFactory(new PropertyValueFactory("roomId"));
         colPayment.setCellValueFactory(new PropertyValueFactory("payment"));
-
-
+        
         setDetails();
     }
 
     private void setDetails() {
-        QueryDaoImpl queryDao = new QueryDaoImpl();
-        ObservableList<StudentPaymentTM> toBePayStudents = queryDao.getToBePayStudents();
+        ObservableList<StudentPaymentTM> toBePayStudents = queryBo.getToBePayStudents();
         tblStudents.setItems(toBePayStudents);
     }
 
