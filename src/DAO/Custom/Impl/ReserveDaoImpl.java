@@ -5,6 +5,7 @@ import Entity.Reserve;
 import Util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -86,6 +87,34 @@ public class ReserveDaoImpl implements ReserveDao {
 
     @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
-        return null;
-    }
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        Query query = session.createQuery("SELECT reserveId FROM Reserve ORDER BY reserveId DESC").setMaxResults(1);
+        List list = query.list();
+        session.close();
+
+        String newUserId = "";
+
+        String lastUserId = list.toString();
+        String[] split = lastUserId.split("[A-z]");
+        int integer = 0;
+        if(split.length > 0){
+             integer = Integer.valueOf(split[3]);
+            ++integer;
+        }
+
+
+        if(!list.isEmpty()){
+            if (integer>=100) {
+                newUserId = "RE" + String.valueOf(integer) ;
+            }else if(integer>=10){
+                newUserId = "RE0" + String.valueOf(integer);
+            }else{
+                newUserId = "RE00" + String.valueOf(integer);
+            }
+            return newUserId;
+
+        }else{
+            return "RE001";
+        }    }
 }

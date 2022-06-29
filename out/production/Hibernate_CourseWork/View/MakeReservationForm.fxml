@@ -31,7 +31,7 @@
       </Label>
       <JFXButton alignment="TOP_CENTER" contentDisplay="TOP" layoutX="216.0" layoutY="134.0" onAction="#addNewStudentOnAction" prefHeight="36.0" prefWidth="214.0" text="Add New Student" />
       <Separator layoutX="26.0" layoutY="264.0" prefHeight="3.0" prefWidth="847.0" />
-      <Button layoutX="639.0" layoutY="466.0" mnemonicParsing="false" onAction="#reserveOnAction" prefHeight="31.0" prefWidth="102.0" text="Reserve" />
+      <Button fx:id="btnReserve" layoutX="639.0" layoutY="466.0" mnemonicParsing="false" onAction="#reserveOnAction" prefHeight="31.0" prefWidth="102.0" text="Reserve" />
       <Button layoutX="769.0" layoutY="466.0" mnemonicParsing="false" onAction="#cancelOnAction" prefHeight="31.0" prefWidth="102.0" text="Cancel" />
       <ComboBox fx:id="comboStudentIds" layoutX="27.0" layoutY="136.0" prefWidth="150.0" promptText="Student ID" />
       <RadioButton fx:id="radioKeyRental" layoutX="725.0" layoutY="395.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="150.0" text="Pay Key Rental">
@@ -47,5 +47,10 @@
       <TextField fx:id="txtRoomKeyMoney" layoutX="264.0" layoutY="390.0" />
       <TextField fx:id="txtRoomQTY" layoutX="471.0" layoutY="390.0" />
       <Separator layoutX="690.0" layoutY="390.0" orientation="VERTICAL" prefHeight="31.0" prefWidth="0.0" />
+      <Label fx:id="lblResId" layoutX="603.0" layoutY="104.0" prefHeight="26.0" prefWidth="102.0">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

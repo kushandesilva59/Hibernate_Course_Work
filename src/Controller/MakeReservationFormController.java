@@ -1,26 +1,35 @@
 package Controller;
 
+import BO.Custom.Impl.ReserveBoImpl;
 import BO.Custom.Impl.RoomBoImpl;
 import BO.Custom.Impl.StudentBoImpl;
+import BO.Custom.ReserveBo;
 import BO.Custom.RoomBo;
 import BO.Custom.StudentBo;
+import Entity.Reserve;
 import Entity.Room;
 import Entity.Student;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Optional;
 
 public class MakeReservationFormController {
 
@@ -36,18 +45,28 @@ public class MakeReservationFormController {
     public TextField txtRoomQTY;
     public TextField txtRoomType;
     public RadioButton radioKeyRental;
+    public Button btnReserve;
+    public Label lblResId;
 
 
     RoomBo roomBo = new RoomBoImpl();
     StudentBo studentBo = new StudentBoImpl();
+    ReserveBo reserveBo = new ReserveBoImpl();
+
 
     public void initialize() throws SQLException, ClassNotFoundException {
+        setResId();
+        btnReserve.setDisable(true);
+        setDate();
         setEditableTextFields();
         loadRooms();
         loadStudentIds();
         comboStudentIds.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
         {
             try {
+                if(!comboRooms.getSelectionModel().isEmpty()){
+                    btnReserve.setDisable(false);
+                }
                 setStudentDetails(newValue);
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -59,12 +78,22 @@ public class MakeReservationFormController {
         comboRooms.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             try {
                 setRoomDetails(newValue);
+                if(!comboStudentIds.getSelectionModel().isEmpty()){
+                    btnReserve.setDisable(false);
+                }
+
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         });
+    }
+
+    private void setDate() {
+            LocalDate currentDate = LocalDate.now();
+          //  lblDate.setText(currentDate.getDayOfMonth()+ "-" + currentDate.getMonthValue() + "-" + currentDate.getYear());
+            lblDate.setText(currentDate.getYear()+ "-" + currentDate.getMonthValue() + "-" + currentDate.getDayOfMonth());
     }
 
     private void setRoomDetails(String roomId) throws SQLException, ClassNotFoundException {
@@ -102,19 +131,48 @@ public class MakeReservationFormController {
         loadUi("AddNewStudentForm");
     }
 
-    public void reserveOnAction(ActionEvent event) {
+    public void reserveOnAction(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
+        String studentId = comboStudentIds.getValue();
+        Student student = studentBo.search(studentId);
 
+        String roomId = comboRooms.getValue();
+        Room room = roomBo.search(roomId);
+
+        String status = "To be pay";
+        if(radioKeyRental.isSelected()){
+            status = "Payed";
+        }
+        Reserve reserve = new Reserve();
+        reserve.setReserveId(lblResId.getText());
+        reserve.setDate(lblDate.getText());
+        reserve.setStatus(status);
+        reserve.setStudent(student);
+        reserve.setRoom(room);
+        reserveBo.save(reserve);
+        Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Reservation success!..").showAndWait();
+        if(buttonType.get().equals(ButtonType.OK)){
+            setQTY(room);
+            loadUi("MakeReservationForm");
+        }
+    }
+
+    private void setQTY(Room room) {
+        
     }
 
     public void cancelOnAction(ActionEvent event) throws IOException {
         loadUi("MainForm");
-
-
     }
 
     public void loadUi(String location) throws IOException {
         Stage stage = (Stage) makeReservationContext.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/"+location+".fxml"))));
+    }
+
+    public void setResId() throws SQLException, ClassNotFoundException {
+        ReserveBoImpl reserveBo = new ReserveBoImpl();
+        String reserveId = reserveBo.generateNewID();
+        lblResId.setText(reserveId);
     }
 
     public void setEditableTextFields(){
