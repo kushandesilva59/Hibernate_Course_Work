@@ -148,9 +148,13 @@ public class MakeReservationFormController {
         reserve.setStudent(student);
         reserve.setRoom(room);
         reserveBo.save(reserve);
+
+        room.getReserveList().add(reserve);
+        student.getReserveList().add(reserve);
         Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Reservation success!..").showAndWait();
         if(buttonType.get().equals(ButtonType.OK)){
             roomBo.setRoomQty(roomId);
+            studentBo.update(student);
             loadUi("MakeReservationForm");
         }
     }

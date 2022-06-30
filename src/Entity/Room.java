@@ -19,7 +19,7 @@ public class Room {
     private double keyMoney;
     private int qty;
 
-    @OneToMany(mappedBy = "room",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "room",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Reserve> reserveList;
 
     public Room(String roomId, String type, double keyMoney, int qty) {

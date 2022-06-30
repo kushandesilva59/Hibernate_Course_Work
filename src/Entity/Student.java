@@ -22,8 +22,9 @@ public class Student {
     private String birthday;
     private String gender;
 
-    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Reserve> reserveList;
+    
 
 
 }
