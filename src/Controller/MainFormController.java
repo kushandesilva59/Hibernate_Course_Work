@@ -37,9 +37,6 @@ public class MainFormController {
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/"+location+".fxml"))));
     }
 
-    public void addRoomOnAction(ActionEvent event) throws IOException {
-        loadUi("AddRoomForm");
-    }
 
     public void setUserId(String id){
         userId = id;
@@ -47,5 +44,9 @@ public class MainFormController {
 
     public void manageRoomOnAction(ActionEvent event) throws IOException {
         loadUi("ManageRoomsForm");
+    }
+
+    public void manageStudentsOnAction(ActionEvent event) throws IOException {
+        loadUi("ManageStudentsForm");
     }
 }
