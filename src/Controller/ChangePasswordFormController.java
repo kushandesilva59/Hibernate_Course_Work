@@ -7,7 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -19,7 +21,12 @@ public class ChangePasswordFormController {
     public PasswordField pwdNewPassword;
     public PasswordField pwdOldPassword;
     private static String userId;
+    public Button btnDone;
     UserBo userBo = new UserBoImpl();
+
+    public void initialize(){
+        btnDone.setDisable(true);
+    }
 
     public void loadUi(String location) throws IOException {
         Stage stage = (Stage) changePasswordContext.getScene().getWindow();
@@ -51,5 +58,29 @@ public class ChangePasswordFormController {
 
     public void setUserId(String id){
         userId = id;
+    }
+
+    public void confirmKeyReleased(KeyEvent keyEvent) {
+        if(pwdOldPassword.getText().trim().isEmpty() || pwdNewPassword.getText().trim().isEmpty()){
+        }else{
+            btnDone.setDisable(false);
+
+        }
+    }
+
+    public void newPasswordKeyReleased(KeyEvent keyEvent) {
+        if(pwdOldPassword.getText().trim().isEmpty() || pwdConfirmation.getText().trim().isEmpty()){
+        }else{
+            btnDone.setDisable(false);
+
+        }
+    }
+
+    public void oldPasswordKeyReleased(KeyEvent keyEvent) {
+        if(pwdNewPassword.getText().trim().isEmpty() || pwdConfirmation.getText().trim().isEmpty()){
+        }else{
+            btnDone.setDisable(false);
+
+        }
     }
 }

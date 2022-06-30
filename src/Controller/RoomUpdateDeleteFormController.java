@@ -98,7 +98,7 @@ public class RoomUpdateDeleteFormController {
 
     public void backOnAction(ActionEvent event) throws IOException {
         Stage stage = (Stage) updateOrDeleteContext.getScene().getWindow();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/MainForm.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/ManageRoomsForm.fxml"))));
     }
 
     public void setRooms() throws SQLException, ClassNotFoundException {
