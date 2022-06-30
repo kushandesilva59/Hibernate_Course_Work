@@ -3,9 +3,9 @@ package Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+
+import javax.persistence.*;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -16,9 +16,9 @@ public class Reserve {
     private String date;
     private String status;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     private Student student;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     private Room room;
 }

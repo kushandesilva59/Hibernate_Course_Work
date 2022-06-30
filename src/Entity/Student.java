@@ -24,7 +24,5 @@ public class Student {
 
     @OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Reserve> reserveList;
-    
-
 
 }
