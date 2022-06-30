@@ -60,21 +60,13 @@ public class AddRoomFormController {
         loadUi("ManageRoomsForm");
     }
 
-    public void keyReleasedOnAction(KeyEvent keyEvent) {
-        validate();
-        if(txtType.getText() != null && txtKeyMoney.getText() != null && txtQty.getText() != null){
-            btnAdd.setDisable(false);
-        }
-    }
 
     private Object validate() {
         LinkedHashMap<TextField, Pattern> map = new LinkedHashMap<>();
 
-        Pattern typePattern = Pattern.compile("^[A-z 0-9]{3,15}$");
         Pattern keyMoneyPattern = Pattern.compile("^[0-9]{3,20}$");
         Pattern qtyPattern = Pattern.compile("^[0-9]{1,100}$");
 
-        map.put(txtType,typePattern);
         map.put(txtKeyMoney,keyMoneyPattern);
         map.put(txtQty,qtyPattern);
 
@@ -106,5 +98,29 @@ public class AddRoomFormController {
     public void loadUi(String location) throws IOException {
         Stage stage = (Stage) addRoomContext.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/"+location+".fxml"))));
+    }
+
+    public void keyMoneyReleasedOnAction(KeyEvent keyEvent) {
+        if(txtType.getText().trim().isEmpty() || txtQty.getText().trim().isEmpty()){
+
+        }else{
+            if(txtQty.getStyle().equals("-fx-border-color: #ff001b")){
+
+            }else{
+                validate();
+            }
+        }
+    }
+
+    public void qtyReleasedOnAction(KeyEvent keyEvent) {
+        if(txtType.getText().trim().isEmpty() || txtKeyMoney.getText().trim().isEmpty()){
+
+        }else{
+            if(txtQty.getStyle().equals("-fx-border-color: #ff001b")){
+
+            }else{
+                validate();
+            }
+        }
     }
 }
