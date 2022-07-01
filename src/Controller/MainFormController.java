@@ -50,6 +50,7 @@ public class MainFormController {
 
     public void manageStudentsOnAction(ActionEvent event) throws IOException {
        // loadUi("ManageStudentsForm");
-        loadUi("StudentManageForm");
+        //loadUi("StudentManageForm");
+        loadUi("ManageStudentsDashBoard");
     }
 }
