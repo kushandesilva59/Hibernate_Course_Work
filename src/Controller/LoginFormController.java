@@ -36,9 +36,9 @@ public class LoginFormController {
     }
 
     public void loginOnAction(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
-        loadUi("MainForm");
+       // loadUi("MainForm");
 
-        /* User user = userBo.search(txtUsername.getText());
+         User user = userBo.search(txtUsername.getText());
 
         if(user != null){
             System.out.println("Done!");
@@ -49,7 +49,7 @@ public class LoginFormController {
             }
         }else{
             new Alert(Alert.AlertType.WARNING,"Incorrect UserId!..").show();
-        }*/
+        }
 
     }
 
