@@ -97,11 +97,17 @@ public class RoomDaoImpl implements RoomDao {
         session.close();
 
         String newUserId = "";
+        int integer = 0;
 
-        String lastUserId = list.toString();
-        String[] split = lastUserId.split("[A-z]");
-        Integer integer = Integer.valueOf(split[2]);
-        ++integer;
+        if(list.isEmpty()){
+            return "R001";
+        }else {
+            String lastUserId = list.toString();
+            String[] split = lastUserId.split("[A-z]");
+             integer = Integer.valueOf(split[2]);
+            ++integer;
+        }
+
 
         if(!list.isEmpty()){
             if (integer>=100) {

@@ -58,7 +58,7 @@ public class StudentDaoImpl implements StudentDao {
         return true;    }
 
     @Override
-    public Student search(String studentId) throws SQLException, ClassNotFoundException {
+    public Student search(String studentId){
         Session session = FactoryConfiguration.getInstance().getSession();
         Student student = session.get(Student.class, studentId);
         session.close();
@@ -99,11 +99,17 @@ public class StudentDaoImpl implements StudentDao {
         session.close();
 
         String newUserId = "";
+        int integer = 0;
 
         String lastUserId = list.toString();
-        String[] split = lastUserId.split("[A-z]");
-        Integer integer = Integer.valueOf(split[2]);
-        ++integer;
+        if(list.isEmpty()){
+            return "S001";
+        }else {
+            String[] split = lastUserId.split("[A-z]");
+             integer = Integer.valueOf(split[2]);
+            ++integer;
+        }
+
 
         if(!list.isEmpty()){
             if (integer>=100) {

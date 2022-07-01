@@ -4,7 +4,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="hibernate.cfg.xml" />
+          <unit-entry name="hibernate.cfg.xml" value="7e6c66ae-8937-4679-ab58-0a99e36219d8" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/hibernate.cfg.xml" />
@@ -14,7 +14,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
-          <factory-entry name="Hibernate_CourseWork" />
+          <factory-entry name="Hibernate_CourseWork" value="70981b61-9c43-40fc-878e-e73c800df387" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

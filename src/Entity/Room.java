@@ -3,10 +3,8 @@ package Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,7 +17,7 @@ public class Room {
     private double keyMoney;
     private int qty;
 
-    @OneToMany(mappedBy = "room",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "room",fetch = FetchType.EAGER)
     private List<Reserve> reserveList;
 
     public Room(String roomId, String type, double keyMoney, int qty) {
