@@ -2,6 +2,8 @@ package Controller;
 
 import BO.Custom.Impl.RoomBoImpl;
 import BO.Custom.RoomBo;
+import DAO.Custom.Impl.QueryDaoImpl;
+import DAO.Custom.QueryDao;
 import Entity.Room;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +36,8 @@ public class RoomUpdateDeleteFormController {
     public TextField txtQTY;
     public Button btnDelete;
     RoomBo roomBo = new RoomBoImpl();
+    QueryDao queryDao = new QueryDaoImpl();
+
 
 
     public void initialize() throws SQLException, ClassNotFoundException, IOException {
@@ -68,6 +72,8 @@ public class RoomUpdateDeleteFormController {
 
                 new Alert(Alert.AlertType.CONFIRMATION, "Deleted!..").show();
                 String roomId = txtRoomId.getText();
+
+                queryDao.deleteReserveByRoomId(roomId);
                 roomBo.delete(roomId);
 
                 Room room = tblRooms.getSelectionModel().getSelectedItem();
