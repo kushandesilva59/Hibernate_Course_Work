@@ -13,11 +13,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.regex.Pattern;
 
 public class StudentManageFormController {
     public AnchorPane studentManageContext;
@@ -88,11 +91,74 @@ public class StudentManageFormController {
         System.out.println("Done!..");
     }
 
-    public void saveOnAction(ActionEvent event) {
+    public void saveOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+        String name = txtName.getText();
+        String address = txtAddress.getText();
+        String contact = txtContact.getText();
+        LocalDate birthDay = dateBirthDay.getValue();
+        String gender = comboGender.getValue();
+        if(name == null || address == null || contact == null || gender == null || birthDay == null){
+           new Alert(Alert.AlertType.WARNING,"Something went wrong!..").show();
+        }else{
+            String DOB = birthDay.toString();
+            Student student = new Student(studentBo.generateNewID(), name, address, contact, DOB, gender);
+            new Alert(Alert.AlertType.CONFIRMATION,"Successfully added student!..").show();
+            studentBo.save(student);
+            setStudents();
+
+        }
 
     }
 
     public void backOnAction(ActionEvent event) {
 
     }
+
+    public void keyReleasedOnAction(KeyEvent keyEvent) {
+        if(tblStudents.getSelectionModel().getSelectedItem() != null){
+            btnSave.setText("Update");
+
+        }else{
+
+        }
+        validate();
+    }
+
+    private Object validate() {
+
+        LinkedHashMap<TextField, Pattern> map = new LinkedHashMap<>();
+
+        Pattern namePattern = Pattern.compile("^[A-z ]{3,15}$");
+        Pattern addressPattern = Pattern.compile("^[A-z ]{4,20}$");
+        Pattern contactPattern = Pattern.compile("^[0-9]{3}(-)[0-9]{7}$");
+
+        map.put(txtName,namePattern);
+        map.put(txtAddress,addressPattern);
+        map.put(txtContact,contactPattern);
+
+        for(TextField key : map.keySet()){
+            Pattern pattern =  map.get(key);
+            if(!pattern.matcher(key.getText()).matches()){
+                setRed(key);
+                return key;
+            }
+            setGreen(key);
+        }
+        return true;
+    }
+
+
+    private void setGreen(TextField textField) {
+        if(textField.getLength() > 0) {
+            textField.setStyle("-fx-border-color: #01ff00");
+            btnSave.setDisable(false);
+        }
+    }
+
+    private void setRed(TextField textField) {
+        if(textField.getLength() > 0){
+            textField.setStyle("-fx-border-color: #ff001b");
+        }
+    }
+
 }

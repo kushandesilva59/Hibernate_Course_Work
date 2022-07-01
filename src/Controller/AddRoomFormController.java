@@ -43,16 +43,10 @@ public class AddRoomFormController {
         room.setKeyMoney(Double.valueOf(txtKeyMoney.getText()));
         room.setQty(Integer.valueOf(txtQty.getText()));
 
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-
-
-        session.save(room);
         Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Room Added!..").showAndWait();
         if(buttonType.get().equals(ButtonType.OK)){
+            roomBo.save(room);
             loadUi("ManageRoomsForm");
-            transaction.commit();
-            session.close();
         }
     }
 
