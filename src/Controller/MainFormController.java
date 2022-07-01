@@ -47,6 +47,7 @@ public class MainFormController {
     }
 
     public void manageStudentsOnAction(ActionEvent event) throws IOException {
-        loadUi("ManageStudentsForm");
+       // loadUi("ManageStudentsForm");
+        loadUi("StudentManageForm");
     }
 }

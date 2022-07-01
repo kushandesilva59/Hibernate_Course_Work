@@ -23,11 +23,11 @@ public class StudentDaoImpl implements StudentDao {
         Transaction transaction = session.beginTransaction();
 
         List <Student> from_student = session.createQuery("FROM Student ").list();
-        while(from_student.isEmpty()){
+
             for(Student student : from_student){
                students.add(student);
             }
-        }
+
 
         transaction.commit();
         session.close();
