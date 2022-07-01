@@ -1,7 +1,12 @@
 package Controller;
 
+import BO.Custom.Impl.QueryBoImpl;
+import BO.Custom.Impl.ReserveBoImpl;
 import BO.Custom.Impl.StudentBoImpl;
+import BO.Custom.QueryBo;
+import BO.Custom.ReserveBo;
 import BO.Custom.StudentBo;
+import DAO.Custom.Impl.QueryDaoImpl;
 import Entity.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,6 +34,9 @@ public class StudentManageFormController {
     public ComboBox <String>comboGender;
     public DatePicker dateBirthDay;
     public Button btnSave;
+    public Button btnDelete;
+    StudentBo studentBo = new StudentBoImpl();
+
 
     public void initialize() throws SQLException, ClassNotFoundException {
         colStudentId.setCellValueFactory(new PropertyValueFactory("studentId"));
@@ -39,6 +47,8 @@ public class StudentManageFormController {
         colGender.setCellValueFactory(new PropertyValueFactory("gender"));
 
         setStudents();
+        btnSave.setDisable(true);
+        btnDelete.setDisable(true);
 
         tblStudents.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setDetails(newValue));
     }
@@ -49,12 +59,11 @@ public class StudentManageFormController {
         txtContact.setText(student.getContact());
         dateBirthDay.setValue(LocalDate.parse(student.getBirthday()));
         comboGender.setValue(student.getGender());
+        btnDelete.setDisable(false);
     }
 
     private void setStudents() throws SQLException, ClassNotFoundException {
         ObservableList<Student> students = FXCollections.observableArrayList();
-
-        StudentBo studentBo = new StudentBoImpl();
         ArrayList<Student> all = studentBo.getAll();
 
         for(Student student : all){
@@ -67,8 +76,16 @@ public class StudentManageFormController {
         tblStudents.setItems(students);
     }
 
-    public void deleteOnAction(ActionEvent event) {
+    public void deleteOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+        Student student = tblStudents.getSelectionModel().getSelectedItem();
 
+        QueryBo queryBo = new QueryBoImpl();
+        queryBo.deleteReserveByStudentId(student.getStudentId());
+        //first delete reservations
+        studentBo.delete(student.getStudentId());
+        tblStudents.getItems().remove(student);
+        tblStudents.refresh();
+        System.out.println("Done!..");
     }
 
     public void saveOnAction(ActionEvent event) {

@@ -9,6 +9,7 @@ import Util.FactoryConfiguration;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -17,5 +18,9 @@ public class QueryBoImpl implements QueryBo {
 
     public ObservableList<StudentPaymentTM> getToBePayStudents(){
        return queryDao.getToBePayStudents();
+    }
+
+    public boolean deleteReserveByStudentId(String studentId){
+        return queryDao.deleteReserveByStudentId(studentId);
     }
 }
