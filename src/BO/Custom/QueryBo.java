@@ -7,8 +7,10 @@ import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-public interface QueryBo extends SuperBo {
-    public ObservableList<StudentPaymentTM> getToBePayStudents();
+import java.io.IOException;
 
-    public boolean deleteReserveByStudentId(String studentId);
+public interface QueryBo extends SuperBo {
+    public ObservableList<StudentPaymentTM> getToBePayStudents() throws IOException;
+
+    public boolean deleteReserveByStudentId(String studentId) throws IOException;
 }

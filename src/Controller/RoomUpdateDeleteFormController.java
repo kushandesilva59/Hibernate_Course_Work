@@ -36,7 +36,7 @@ public class RoomUpdateDeleteFormController {
     RoomBo roomBo = new RoomBoImpl();
 
 
-    public void initialize() throws SQLException, ClassNotFoundException {
+    public void initialize() throws SQLException, ClassNotFoundException, IOException {
         colRoomId.setCellValueFactory(new PropertyValueFactory("roomId"));
         colRoomType.setCellValueFactory(new PropertyValueFactory("type"));
         colKeyRental.setCellValueFactory(new PropertyValueFactory("keyMoney"));
@@ -61,7 +61,7 @@ public class RoomUpdateDeleteFormController {
         txtQTY.setText(String.valueOf(room.getQty()));
     }
 
-    public void deleteOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+    public void deleteOnAction(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         if (btnDelete.getText().equals("Delete")) {
             Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ?").showAndWait();
             if (buttonType.get().equals(ButtonType.OK)) {
@@ -101,7 +101,7 @@ public class RoomUpdateDeleteFormController {
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/ManageRoomsForm.fxml"))));
     }
 
-    public void setRooms() throws SQLException, ClassNotFoundException {
+    public void setRooms() throws SQLException, ClassNotFoundException, IOException {
         ObservableList<Room> rooms = FXCollections.observableArrayList();
         RoomBo roomBo = new RoomBoImpl();
         ArrayList<Room> all = roomBo.getAll();

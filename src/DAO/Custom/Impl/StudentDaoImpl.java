@@ -10,13 +10,14 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDaoImpl implements StudentDao {
     @Override
-    public ArrayList<Student> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Student> getAll() throws SQLException, ClassNotFoundException, IOException {
         ArrayList <Student> students = new ArrayList();
 
         Session session = FactoryConfiguration.getInstance().getSession();
@@ -35,7 +36,7 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public boolean save(Student student) throws SQLException, ClassNotFoundException {
+    public boolean save(Student student) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -47,7 +48,7 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public boolean update(Student student) throws SQLException, ClassNotFoundException {
+    public boolean update(Student student) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -59,7 +60,7 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public Student search(String studentId){
+    public Student search(String studentId) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Student student = session.get(Student.class, studentId);
         session.close();
@@ -67,7 +68,7 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public boolean exist(String studentId) throws SQLException, ClassNotFoundException {
+    public boolean exist(String studentId) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Student student = session.get(Student.class, studentId);
         session.close();
@@ -79,7 +80,7 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public boolean delete(String studentId) throws SQLException, ClassNotFoundException {
+    public boolean delete(String studentId) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -92,7 +93,7 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public String generateNewID() throws SQLException, ClassNotFoundException {
+    public String generateNewID() throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
 
         Query query = session.createQuery("SELECT studentId FROM Student ORDER BY studentId DESC").setMaxResults(1);
@@ -127,7 +128,7 @@ public class StudentDaoImpl implements StudentDao {
         }
     }
 
-    public ObservableList<String> getAllStudentIds(){
+    public ObservableList<String> getAllStudentIds() throws IOException {
         ObservableList <String> studentIds = FXCollections.observableArrayList();
 
         Session session = FactoryConfiguration.getInstance().getSession();

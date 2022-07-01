@@ -10,8 +10,9 @@ import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface StudentDao extends CrudDao<Student,String> {
-    public ObservableList<String> getAllStudentIds();
+    public ObservableList<String> getAllStudentIds() throws IOException;
 }

@@ -9,37 +9,38 @@ import Util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserBoImpl implements UserBo {
     UserDao userDao = new UserDaoImpl();
 
-    public ArrayList<User> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<User> getAll() throws SQLException, ClassNotFoundException, IOException {
         return userDao.getAll();
     }
 
-    public boolean save(User user) throws SQLException, ClassNotFoundException {
+    public boolean save(User user) throws SQLException, ClassNotFoundException, IOException {
         return userDao.save(user);
     }
 
-    public boolean update(User user) throws SQLException, ClassNotFoundException {
+    public boolean update(User user) throws SQLException, ClassNotFoundException, IOException {
         return userDao.update(user);
     }
 
-    public User search(String userId) throws SQLException, ClassNotFoundException {
+    public User search(String userId) throws SQLException, ClassNotFoundException, IOException {
         return userDao.search(userId);
     }
 
-    public boolean exist(String userId) throws SQLException, ClassNotFoundException {
+    public boolean exist(String userId) throws SQLException, ClassNotFoundException, IOException {
         return userDao.exist(userId);
     }
 
-    public boolean delete(String userId) throws SQLException, ClassNotFoundException {
+    public boolean delete(String userId) throws SQLException, ClassNotFoundException, IOException {
         return userDao.delete(userId);
     }
 
-    public String generateNewID() throws SQLException, ClassNotFoundException {
+    public String generateNewID() throws SQLException, ClassNotFoundException, IOException {
         return userDao.generateNewID();
     }
 
@@ -51,7 +52,7 @@ public class UserBoImpl implements UserBo {
         return userDao.passwordConfirmed(newPassword,confirmation);
     }
 
-    public boolean changePassword(User user,String newPassword){
+    public boolean changePassword(User user,String newPassword) throws IOException {
         return userDao.changePassword(user,newPassword);
     }
 }

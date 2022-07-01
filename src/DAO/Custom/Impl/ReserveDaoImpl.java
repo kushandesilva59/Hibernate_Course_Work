@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 public class ReserveDaoImpl implements ReserveDao {
 
     @Override
-    public ArrayList<Reserve> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Reserve> getAll() throws SQLException, ClassNotFoundException, IOException {
         ArrayList <Reserve> reserves = new ArrayList();
         Session session = FactoryConfiguration.getInstance().getSession();
 
@@ -29,7 +30,7 @@ public class ReserveDaoImpl implements ReserveDao {
     }
 
     @Override
-    public boolean save(Reserve reserve) throws SQLException, ClassNotFoundException {
+    public boolean save(Reserve reserve) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -41,7 +42,7 @@ public class ReserveDaoImpl implements ReserveDao {
     }
 
     @Override
-    public boolean update(Reserve reserve) throws SQLException, ClassNotFoundException {
+    public boolean update(Reserve reserve) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -53,7 +54,7 @@ public class ReserveDaoImpl implements ReserveDao {
     }
 
     @Override
-    public Reserve search(String reserveId) throws SQLException, ClassNotFoundException {
+    public Reserve search(String reserveId) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
 
         Reserve reserve = session.find(Reserve.class, reserveId);
@@ -62,7 +63,7 @@ public class ReserveDaoImpl implements ReserveDao {
     }
 
     @Override
-    public boolean exist(String reserveId) throws SQLException, ClassNotFoundException {
+    public boolean exist(String reserveId) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Reserve reserve = session.find(Reserve.class, reserveId);
         session.close();
@@ -74,7 +75,7 @@ public class ReserveDaoImpl implements ReserveDao {
     }
 
     @Override
-    public boolean delete(String reserveId) throws SQLException, ClassNotFoundException {
+    public boolean delete(String reserveId) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -86,7 +87,7 @@ public class ReserveDaoImpl implements ReserveDao {
     }
 
     @Override
-    public String generateNewID() throws SQLException, ClassNotFoundException {
+    public String generateNewID() throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
 
         Query query = session.createQuery("SELECT reserveId FROM Reserve ORDER BY reserveId DESC").setMaxResults(1);

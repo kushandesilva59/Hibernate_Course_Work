@@ -11,16 +11,17 @@ import javafx.collections.ObservableList;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import java.io.IOException;
 import java.util.List;
 
 public class QueryBoImpl implements QueryBo {
     QueryDao queryDao = new QueryDaoImpl();
 
-    public ObservableList<StudentPaymentTM> getToBePayStudents(){
+    public ObservableList<StudentPaymentTM> getToBePayStudents() throws IOException {
        return queryDao.getToBePayStudents();
     }
 
-    public boolean deleteReserveByStudentId(String studentId){
+    public boolean deleteReserveByStudentId(String studentId) throws IOException {
         return queryDao.deleteReserveByStudentId(studentId);
     }
 }

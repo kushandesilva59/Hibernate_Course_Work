@@ -5,6 +5,7 @@ import DAO.Custom.Impl.ReserveDaoImpl;
 import DAO.Custom.ReserveDao;
 import Entity.Reserve;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -13,37 +14,37 @@ public class ReserveBoImpl implements ReserveBo {
 
 
     @Override
-    public ArrayList<Reserve> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Reserve> getAll() throws SQLException, ClassNotFoundException, IOException {
        return reserveDao.getAll();
     }
 
     @Override
-    public boolean save(Reserve reserve) throws SQLException, ClassNotFoundException {
+    public boolean save(Reserve reserve) throws SQLException, ClassNotFoundException, IOException {
         return reserveDao.save(reserve);
     }
 
     @Override
-    public boolean update(Reserve reserve) throws SQLException, ClassNotFoundException {
+    public boolean update(Reserve reserve) throws SQLException, ClassNotFoundException, IOException {
         return reserveDao.update(reserve);
     }
 
     @Override
-    public Reserve search(String reserveId) throws SQLException, ClassNotFoundException {
+    public Reserve search(String reserveId) throws SQLException, ClassNotFoundException, IOException {
         return reserveDao.search(reserveId);
     }
 
     @Override
-    public boolean exist(String reserveId) throws SQLException, ClassNotFoundException {
+    public boolean exist(String reserveId) throws SQLException, ClassNotFoundException, IOException {
         return reserveDao.exist(reserveId);
     }
 
     @Override
-    public boolean delete(String reserveId) throws SQLException, ClassNotFoundException {
+    public boolean delete(String reserveId) throws SQLException, ClassNotFoundException, IOException {
         return reserveDao.delete(reserveId);
     }
 
     @Override
-    public String generateNewID() throws SQLException, ClassNotFoundException {
+    public String generateNewID() throws SQLException, ClassNotFoundException, IOException {
         return reserveDao.generateNewID();
     }
 }

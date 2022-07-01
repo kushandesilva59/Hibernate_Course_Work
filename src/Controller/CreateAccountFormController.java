@@ -41,7 +41,7 @@ public class CreateAccountFormController {
             femaleButton.setToggleGroup(group);
     }
 
-    public void addAccountOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+    public void addAccountOnAction(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         String name = txtName.getText();
         String address = txtAddress.getText();
         String contact = txtContact.getText();

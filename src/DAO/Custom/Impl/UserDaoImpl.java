@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
     @Override
-    public ArrayList<User> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<User> getAll() throws SQLException, ClassNotFoundException, IOException {
         ArrayList <User> users = new ArrayList();
 
         Session session = FactoryConfiguration.getInstance().getSession();
@@ -34,7 +35,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean save(User user) throws SQLException, ClassNotFoundException {
+    public boolean save(User user) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -47,7 +48,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean update(User user) throws SQLException, ClassNotFoundException {
+    public boolean update(User user) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -60,7 +61,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User search(String userId) throws SQLException, ClassNotFoundException {
+    public User search(String userId) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
 
         User user = session.find(User.class, userId);
@@ -70,7 +71,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean exist(String userId) throws SQLException, ClassNotFoundException {
+    public boolean exist(String userId) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
 
         User user = session.find(User.class, userId);
@@ -83,7 +84,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean delete(String userId) throws SQLException, ClassNotFoundException {
+    public boolean delete(String userId) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -97,7 +98,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public String generateNewID() throws SQLException, ClassNotFoundException {
+    public String generateNewID() throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
 
         Query query = session.createQuery("SELECT userId FROM User ORDER BY userId DESC").setMaxResults(1);
@@ -142,7 +143,7 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public boolean changePassword(User user,String newPassword){
+    public boolean changePassword(User user,String newPassword) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 

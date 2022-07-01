@@ -11,11 +11,15 @@ import Entity.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -42,7 +46,7 @@ public class StudentManageFormController {
     StudentBo studentBo = new StudentBoImpl();
 
 
-    public void initialize() throws SQLException, ClassNotFoundException {
+    public void initialize() throws SQLException, ClassNotFoundException, IOException {
         colStudentId.setCellValueFactory(new PropertyValueFactory("studentId"));
         colName.setCellValueFactory(new PropertyValueFactory("name"));
         colAddress.setCellValueFactory(new PropertyValueFactory("address"));
@@ -66,7 +70,7 @@ public class StudentManageFormController {
         btnDelete.setDisable(false);
     }
 
-    private void setStudents() throws SQLException, ClassNotFoundException {
+    private void setStudents() throws SQLException, ClassNotFoundException, IOException {
         ObservableList<Student> students = FXCollections.observableArrayList();
         ArrayList<Student> all = studentBo.getAll();
 
@@ -80,7 +84,7 @@ public class StudentManageFormController {
         tblStudents.setItems(students);
     }
 
-    public void deleteOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+    public void deleteOnAction(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ?").showAndWait();
 
         if(buttonType.get().equals(ButtonType.OK)){
@@ -95,7 +99,7 @@ public class StudentManageFormController {
         }
     }
 
-    public void saveOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+    public void saveOnAction(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         String name = txtName.getText();
         String address = txtAddress.getText();
         String contact = txtContact.getText();
@@ -132,8 +136,9 @@ public class StudentManageFormController {
 
     }
 
-    public void backOnAction(ActionEvent event) {
-        
+    public void backOnAction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) studentManageContext.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/MainForm.fxml"))));
     }
 
     public void keyReleasedOnAction(KeyEvent keyEvent) {

@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
 public class RoomDaoImpl implements RoomDao {
 
     @Override
-    public ArrayList<Room> getAll() throws SQLException, ClassNotFoundException {
+    public ArrayList<Room> getAll() throws SQLException, ClassNotFoundException, IOException {
         ArrayList<Room> rooms = new ArrayList<>();
 
         Session session = FactoryConfiguration.getInstance().getSession();
@@ -31,7 +32,7 @@ public class RoomDaoImpl implements RoomDao {
     }
 
     @Override
-    public boolean save(Room room) throws SQLException, ClassNotFoundException {
+    public boolean save(Room room) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -43,7 +44,7 @@ public class RoomDaoImpl implements RoomDao {
     }
 
     @Override
-    public boolean update(Room room) throws SQLException, ClassNotFoundException {
+    public boolean update(Room room) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -55,7 +56,7 @@ public class RoomDaoImpl implements RoomDao {
     }
 
     @Override
-    public Room search(String roomId) throws SQLException, ClassNotFoundException {
+    public Room search(String roomId) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Room room = session.find(Room.class, roomId);
         session.close();
@@ -63,7 +64,7 @@ public class RoomDaoImpl implements RoomDao {
     }
 
     @Override
-    public boolean exist(String roomId) throws SQLException, ClassNotFoundException {
+    public boolean exist(String roomId) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Room room = session.find(Room.class, roomId);
         session.close();
@@ -75,7 +76,7 @@ public class RoomDaoImpl implements RoomDao {
     }
 
     @Override
-    public boolean delete(String roomId) throws SQLException, ClassNotFoundException {
+    public boolean delete(String roomId) throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -89,7 +90,7 @@ public class RoomDaoImpl implements RoomDao {
     }
 
     @Override
-    public String generateNewID() throws SQLException, ClassNotFoundException {
+    public String generateNewID() throws SQLException, ClassNotFoundException, IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
 
         Query query = session.createQuery("SELECT roomId FROM Room ORDER BY roomId DESC").setMaxResults(1);
@@ -124,7 +125,7 @@ public class RoomDaoImpl implements RoomDao {
         }
     }
 
-    public void setRoomQty(String roomId){
+    public void setRoomQty(String roomId) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Room room = session.find(Room.class, roomId);
         int qty = room.getQty();
@@ -138,7 +139,7 @@ public class RoomDaoImpl implements RoomDao {
         session.close();
     }
 
-    public ObservableList<Room> getAvailableRooms(){
+    public ObservableList<Room> getAvailableRooms() throws IOException {
         ObservableList<Room> rooms = FXCollections.observableArrayList();
 
         Session session = FactoryConfiguration.getInstance().getSession();

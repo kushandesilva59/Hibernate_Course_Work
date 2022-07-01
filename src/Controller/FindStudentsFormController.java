@@ -31,7 +31,7 @@ public class FindStudentsFormController {
     QueryBo queryBo = new QueryBoImpl();
 
 
-    public void initialize(){
+    public void initialize() throws IOException {
         colId.setCellValueFactory(new PropertyValueFactory("studentId"));
         colName.setCellValueFactory(new PropertyValueFactory("studentName"));
         colContact.setCellValueFactory(new PropertyValueFactory("contact"));
@@ -41,7 +41,7 @@ public class FindStudentsFormController {
         setDetails();
     }
 
-    private void setDetails() {
+    private void setDetails() throws IOException {
         ObservableList<StudentPaymentTM> toBePayStudents = queryBo.getToBePayStudents();
         tblStudents.setItems(toBePayStudents);
     }

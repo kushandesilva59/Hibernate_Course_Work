@@ -10,10 +10,11 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.io.IOException;
 import java.util.List;
 
 public class QueryDaoImpl implements QueryDao {
-    public ObservableList<StudentPaymentTM> getToBePayStudents(){
+    public ObservableList<StudentPaymentTM> getToBePayStudents() throws IOException {
         ObservableList<StudentPaymentTM> students = FXCollections.observableArrayList();
 
         Session session = FactoryConfiguration.getInstance().getSession();
@@ -43,7 +44,7 @@ public class QueryDaoImpl implements QueryDao {
         return students;*/
     }
 
-    public boolean deleteReserveByStudentId(String studentId){
+    public boolean deleteReserveByStudentId(String studentId) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         Query query = session.createQuery("DELETE FROM Reserve WHERE student.studentId =: id");

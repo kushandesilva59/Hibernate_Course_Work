@@ -54,7 +54,7 @@ public class MakeReservationFormController {
     ReserveBo reserveBo = new ReserveBoImpl();
 
 
-    public void initialize() throws SQLException, ClassNotFoundException {
+    public void initialize() throws SQLException, ClassNotFoundException, IOException {
         setResId();
         btnReserve.setDisable(true);
         setDate();
@@ -72,6 +72,8 @@ public class MakeReservationFormController {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
 
@@ -86,6 +88,8 @@ public class MakeReservationFormController {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }
@@ -95,14 +99,14 @@ public class MakeReservationFormController {
             lblDate.setText(currentDate.getYear()+ "-" + currentDate.getMonthValue() + "-" + currentDate.getDayOfMonth());
     }
 
-    private void setRoomDetails(String roomId) throws SQLException, ClassNotFoundException {
+    private void setRoomDetails(String roomId) throws SQLException, ClassNotFoundException, IOException {
         Room room = roomBo.search(roomId);
         txtRoomType.setText(room.getType());
         txtRoomKeyMoney.setText("Rs."+String.valueOf(room.getKeyMoney()));
         txtRoomQTY.setText(String.valueOf(room.getQty()));
     }
 
-    private void setStudentDetails(String studentId) throws SQLException, ClassNotFoundException {
+    private void setStudentDetails(String studentId) throws SQLException, ClassNotFoundException, IOException {
         Student student = studentBo.search(studentId);
         txtStudentName.setText(student.getName());
         txtStudentAddress.setText(student.getAddress());
@@ -110,12 +114,12 @@ public class MakeReservationFormController {
         txtStudentBDay.setText(student.getBirthday());
     }
 
-    private void loadStudentIds() {
+    private void loadStudentIds() throws IOException {
         ObservableList<String> allStudentIds = studentBo.getAllStudentIds();
         comboStudentIds.setItems(allStudentIds);
     }
 
-    private void loadRooms(){
+    private void loadRooms() throws IOException {
         ObservableList <String> roomIds = FXCollections.observableArrayList();
         ObservableList<Room> availableRooms = roomBo.getAvailableRooms();
 
@@ -168,7 +172,7 @@ public class MakeReservationFormController {
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/"+location+".fxml"))));
     }
 
-    public void setResId() throws SQLException, ClassNotFoundException {
+    public void setResId() throws SQLException, ClassNotFoundException, IOException {
         ReserveBoImpl reserveBo = new ReserveBoImpl();
         String reserveId = reserveBo.generateNewID();
         lblResId.setText(reserveId);
