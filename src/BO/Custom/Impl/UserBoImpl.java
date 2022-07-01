@@ -3,6 +3,7 @@ package BO.Custom.Impl;
 import BO.Custom.UserBo;
 import DAO.Custom.Impl.UserDaoImpl;
 import DAO.Custom.UserDao;
+import DAO.DaoFactory;
 import Dto.UserDto;
 import Entity.User;
 import Util.FactoryConfiguration;
@@ -14,7 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserBoImpl implements UserBo {
-    UserDao userDao = new UserDaoImpl();
+    UserDao userDao = (UserDao) DaoFactory.getDaoFactory().getDAO(DaoFactory.DAOTypes.USER);
 
     public ArrayList<User> getAll() throws SQLException, ClassNotFoundException, IOException {
         return userDao.getAll();

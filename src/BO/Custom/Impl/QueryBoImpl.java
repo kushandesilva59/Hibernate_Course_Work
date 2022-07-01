@@ -3,6 +3,7 @@ package BO.Custom.Impl;
 import BO.Custom.QueryBo;
 import DAO.Custom.Impl.QueryDaoImpl;
 import DAO.Custom.QueryDao;
+import DAO.DaoFactory;
 import Entity.Reserve;
 import TM.StudentPaymentTM;
 import Util.FactoryConfiguration;
@@ -16,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class QueryBoImpl implements QueryBo {
-    QueryDao queryDao = new QueryDaoImpl();
+    QueryDao queryDao = (QueryDao) DaoFactory.getDaoFactory().getDAO(DaoFactory.DAOTypes.QUERY);
 
     public ObservableList<StudentPaymentTM> getToBePayStudents() throws IOException {
        return queryDao.getToBePayStudents();

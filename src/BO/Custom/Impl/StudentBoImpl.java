@@ -3,6 +3,7 @@ package BO.Custom.Impl;
 import BO.Custom.StudentBo;
 import DAO.Custom.Impl.StudentDaoImpl;
 import DAO.Custom.StudentDao;
+import DAO.DaoFactory;
 import Dto.StudentDto;
 import Entity.Student;
 import Util.FactoryConfiguration;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentBoImpl implements StudentBo {
-    StudentDao studentDao = new StudentDaoImpl();
+    StudentDao studentDao = (StudentDao) DaoFactory.getDaoFactory().getDAO(DaoFactory.DAOTypes.STUDENT);
 
     @Override
     public ArrayList<Student> getAll() throws SQLException, ClassNotFoundException, IOException {

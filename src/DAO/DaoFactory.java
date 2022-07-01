@@ -1,9 +1,6 @@
 package DAO;
 
-import DAO.Custom.Impl.ReserveDaoImpl;
-import DAO.Custom.Impl.RoomDaoImpl;
-import DAO.Custom.Impl.StudentDaoImpl;
-import DAO.Custom.Impl.UserDaoImpl;
+import DAO.Custom.Impl.*;
 import DAO.Custom.SuperDao;
 
 public class DaoFactory {
@@ -22,20 +19,22 @@ public class DaoFactory {
 
 
     public enum DAOTypes {
-        RESERVE, STUDENT, ROOM, USER
+        RESERVE, STUDENT, ROOM, USER,QUERY
     }
 
 
     public SuperDao getDAO(DAOTypes types) {
         switch (types) {
             case RESERVE:
-                return new ReserveDaoImpl(); //SuperDAO superDAO=new CustomerDAOImpl();
+                return new ReserveDaoImpl();
             case STUDENT:
-                return new StudentDaoImpl(); //SuperDAO superDAO=new ItemDAOImpl();
+                return new StudentDaoImpl();
             case ROOM:
-                return  new RoomDaoImpl(); //SuperDAO superDAO = new OrderDAOImpl();
+                return  new RoomDaoImpl();
             case USER:
-                return new UserDaoImpl(); //SuperDAO superDAO = new OrderDetailsDAOImpl();
+                return new UserDaoImpl();
+            case QUERY:
+                return new QueryDaoImpl();
             default:
                 return null;
         }

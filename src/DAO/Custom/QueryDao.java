@@ -1,5 +1,7 @@
 package DAO.Custom;
 
+import BO.SuperBo;
+import DAO.CrudDao;
 import Entity.Reserve;
 import TM.StudentPaymentTM;
 import Util.FactoryConfiguration;
@@ -12,7 +14,7 @@ import org.hibernate.query.Query;
 import java.io.IOException;
 import java.util.List;
 
-public interface QueryDao {
+public interface QueryDao extends SuperDao {
     public ObservableList<StudentPaymentTM> getToBePayStudents() throws IOException;
 
     public boolean deleteReserveByStudentId(String studentId) throws IOException;

@@ -3,6 +3,7 @@ package BO.Custom.Impl;
 import BO.Custom.RoomBo;
 import DAO.Custom.Impl.RoomDaoImpl;
 import DAO.Custom.RoomDao;
+import DAO.DaoFactory;
 import Dto.RoomDto;
 import Entity.Room;
 import Util.FactoryConfiguration;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoomBoImpl implements RoomBo {
-    RoomDao roomDao = new RoomDaoImpl();
+    RoomDao roomDao = (RoomDao) DaoFactory.getDaoFactory().getDAO(DaoFactory.DAOTypes.ROOM);
 
     @Override
     public ArrayList<Room> getAll() throws SQLException, ClassNotFoundException, IOException {

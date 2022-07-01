@@ -3,6 +3,7 @@ package BO.Custom.Impl;
 import BO.Custom.ReserveBo;
 import DAO.Custom.Impl.ReserveDaoImpl;
 import DAO.Custom.ReserveDao;
+import DAO.DaoFactory;
 import Entity.Reserve;
 
 import java.io.IOException;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ReserveBoImpl implements ReserveBo {
-    ReserveDao reserveDao = new ReserveDaoImpl();
+    ReserveDao reserveDao = (ReserveDao) DaoFactory.getDaoFactory().getDAO(DaoFactory.DAOTypes.RESERVE);
 
 
     @Override
