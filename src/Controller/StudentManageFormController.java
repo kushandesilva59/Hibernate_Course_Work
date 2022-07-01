@@ -94,6 +94,7 @@ public class StudentManageFormController {
             queryBo.deleteReserveByStudentId(student.getStudentId());
             //first delete reservations
             studentBo.delete(student.getStudentId());
+            new Alert(Alert.AlertType.CONFIRMATION,"Student Deleted !").show();
             tblStudents.getItems().remove(student);
             tblStudents.refresh();
         }

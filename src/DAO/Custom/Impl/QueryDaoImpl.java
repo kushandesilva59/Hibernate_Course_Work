@@ -61,4 +61,22 @@ public class QueryDaoImpl implements QueryDao {
         }
 
     }
+
+    public boolean deleteReserveByRoomId(String roomId) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("DELETE FROM Reserve WHERE room.roomId =: id");
+        query.setParameter("id",roomId);
+
+        int i = query.executeUpdate();
+
+        transaction.commit();
+        session.close();
+        if(i > 0){
+            return true;
+        }else {
+            return false;
+        }
+
+    }
 }

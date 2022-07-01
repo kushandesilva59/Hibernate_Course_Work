@@ -4,10 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class MainFormController {
 
@@ -15,7 +18,10 @@ public class MainFormController {
     public static String userId;
 
     public void logOutOnAction(ActionEvent event) throws IOException {
-        loadUi("LoginForm");
+        Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ?").showAndWait();
+        if(buttonType.get().equals(ButtonType.OK)){
+            loadUi("LoginForm");
+        }
     }
 
     public void makeReservationOnAction(ActionEvent event) throws IOException {
@@ -26,10 +32,6 @@ public class MainFormController {
         ChangePasswordFormController changePasswordFormController = new ChangePasswordFormController();
         changePasswordFormController.setUserId(userId);
         loadUi("ChangePasswordForm");
-    }
-
-    public void findSStudentOnAction(ActionEvent event) throws IOException {
-        loadUi("FindStudentsForm");
     }
 
     public void loadUi(String location) throws IOException {

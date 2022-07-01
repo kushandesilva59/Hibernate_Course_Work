@@ -69,6 +69,7 @@ public class RoomUpdateDeleteFormController {
                 new Alert(Alert.AlertType.CONFIRMATION, "Deleted!..").show();
                 String roomId = txtRoomId.getText();
                 roomBo.delete(roomId);
+
                 Room room = tblRooms.getSelectionModel().getSelectedItem();
                 tblRooms.getItems().remove(room);
                 tblRooms.refresh();
