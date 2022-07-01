@@ -14,25 +14,31 @@ import java.io.IOException;
 
 public class FactoryConfiguration {
     private static FactoryConfiguration factoryConfiguration;
-    private static SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     private FactoryConfiguration() throws IOException {
-           /* Configuration configuration = new Configuration();
+        try{
+            Configuration configuration = new Configuration();
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             configuration.addAnnotatedClass(User.class)
                     .addAnnotatedClass(Student.class)
                     .addAnnotatedClass(Room.class)
                     .addAnnotatedClass(Reserve.class);
 
-            sessionFactory = configuration.buildSessionFactory(serviceRegistry);*/
+            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Error");
+        }
 
-        Configuration configuration = new Configuration().configure();
+
+       /* Configuration configuration = new Configuration().configure();
             configuration.addAnnotatedClass(User.class)
                     .addAnnotatedClass(Student.class)
                     .addAnnotatedClass(Room.class)
                     .addAnnotatedClass(Reserve.class);
 
-            sessionFactory = configuration.buildSessionFactory();
+            sessionFactory = configuration.buildSessionFactory();*/
 
     }
     public static FactoryConfiguration getInstance() throws IOException {
