@@ -1,5 +1,6 @@
 package Controller;
 
+import BO.BoFactory;
 import BO.Custom.Impl.ReserveBoImpl;
 import BO.Custom.Impl.RoomBoImpl;
 import BO.Custom.Impl.StudentBoImpl;
@@ -49,9 +50,9 @@ public class MakeReservationFormController {
     public Label lblResId;
 
 
-    RoomBo roomBo = new RoomBoImpl();
-    StudentBo studentBo = new StudentBoImpl();
-    ReserveBo reserveBo = new ReserveBoImpl();
+    RoomBo roomBo = (RoomBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.ROOM);
+    StudentBo studentBo = (StudentBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.STUDENT);
+    ReserveBo reserveBo = (ReserveBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.RESERVE);
 
 
     public void initialize() throws SQLException, ClassNotFoundException, IOException {
@@ -173,7 +174,6 @@ public class MakeReservationFormController {
     }
 
     public void setResId() throws SQLException, ClassNotFoundException, IOException {
-        ReserveBoImpl reserveBo = new ReserveBoImpl();
         String reserveId = reserveBo.generateNewID();
         lblResId.setText(reserveId);
     }

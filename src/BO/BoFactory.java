@@ -1,9 +1,6 @@
 package BO;
 
-import BO.Custom.Impl.ReserveBoImpl;
-import BO.Custom.Impl.RoomBoImpl;
-import BO.Custom.Impl.StudentBoImpl;
-import BO.Custom.Impl.UserBoImpl;
+import BO.Custom.Impl.*;
 
 public class BoFactory {
     private static BoFactory boFactory;
@@ -21,19 +18,21 @@ public class BoFactory {
     public SuperBo getBO(BOTypes types) {
         switch (types) {
             case RESERVE:
-                return new ReserveBoImpl(); // SuperBO bo =new CustomerBOImpl();
+                return new ReserveBoImpl();
             case ROOM:
-                return new  RoomBoImpl(); // SuperBO bo = new ItemBOImpl();
+                return new  RoomBoImpl();
             case STUDENT:
-                return new StudentBoImpl(); //SuperBO bo = new PurchaseOrderBOImpl();
+                return new StudentBoImpl();
             case USER:
-                return new UserBoImpl(); //SuperBO bo = new PurchaseOrderBOImpl();
+                return new UserBoImpl();
+            case QUERY:
+                return new QueryBoImpl();
             default:
                 return null;
         }
     }
 
     public enum BOTypes {
-        RESERVE, ROOM, STUDENT,USER
+        RESERVE, ROOM, STUDENT,USER,QUERY;
     }
 }

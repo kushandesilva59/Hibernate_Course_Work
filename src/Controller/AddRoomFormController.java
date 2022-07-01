@@ -1,5 +1,6 @@
 package Controller;
 
+import BO.BoFactory;
 import BO.Custom.Impl.RoomBoImpl;
 import BO.Custom.RoomBo;
 import Entity.Room;
@@ -29,13 +30,14 @@ public class AddRoomFormController {
     public TextField txtKeyMoney;
     public TextField txtQty;
     public Button btnAdd;
+    RoomBo roomBo = (RoomBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.ROOM);
+
 
     public void initialize(){
         btnAdd.setDisable(true);
     }
 
     public void addOnAction(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
-        RoomBo roomBo = new RoomBoImpl();
 
         Room room = new Room();
         room.setRoomId(roomBo.generateNewID());

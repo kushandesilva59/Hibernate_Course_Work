@@ -1,5 +1,6 @@
 package Controller;
 
+import BO.BoFactory;
 import BO.Custom.Impl.UserBoImpl;
 import Entity.User;
 import com.jfoenix.controls.JFXPasswordField;
@@ -27,6 +28,9 @@ public class LoginFormController {
     public TextField txtPassword;
     public CheckBox checkBoxShow;
 
+    UserBoImpl userBo = (UserBoImpl) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.USER);
+
+
     public void initialize(){
         txtPassword.setVisible(false);
     }
@@ -34,8 +38,7 @@ public class LoginFormController {
     public void loginOnAction(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
         loadUi("MainForm");
 
-       /* UserBoImpl userBo = new UserBoImpl();
-        User user = userBo.search(txtUsername.getText());
+        /* User user = userBo.search(txtUsername.getText());
 
         if(user != null){
             System.out.println("Done!");

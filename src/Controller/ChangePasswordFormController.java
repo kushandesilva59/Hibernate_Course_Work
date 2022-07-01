@@ -1,5 +1,6 @@
 package Controller;
 
+import BO.BoFactory;
 import BO.Custom.Impl.UserBoImpl;
 import BO.Custom.UserBo;
 import Entity.User;
@@ -22,7 +23,7 @@ public class ChangePasswordFormController {
     public PasswordField pwdOldPassword;
     private static String userId;
     public Button btnDone;
-    UserBo userBo = new UserBoImpl();
+    UserBo userBo = (UserBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.USER);
 
     public void initialize(){
         btnDone.setDisable(true);

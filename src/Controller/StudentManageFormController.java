@@ -1,5 +1,6 @@
 package Controller;
 
+import BO.BoFactory;
 import BO.Custom.Impl.QueryBoImpl;
 import BO.Custom.Impl.ReserveBoImpl;
 import BO.Custom.Impl.StudentBoImpl;
@@ -43,7 +44,9 @@ public class StudentManageFormController {
     public DatePicker dateBirthDay;
     public Button btnSave;
     public Button btnDelete;
-    StudentBo studentBo = new StudentBoImpl();
+    StudentBo studentBo = (StudentBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.STUDENT);
+    QueryBo queryBo = (QueryBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.QUERY);
+
 
 
     public void initialize() throws SQLException, ClassNotFoundException, IOException {
@@ -90,7 +93,6 @@ public class StudentManageFormController {
         if(buttonType.get().equals(ButtonType.OK)){
             Student student = tblStudents.getSelectionModel().getSelectedItem();
 
-            QueryBo queryBo = new QueryBoImpl();
             queryBo.deleteReserveByStudentId(student.getStudentId());
             //first delete reservations
             studentBo.delete(student.getStudentId());

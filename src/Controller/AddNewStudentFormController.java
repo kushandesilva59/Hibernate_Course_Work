@@ -1,5 +1,6 @@
 package Controller;
 
+import BO.BoFactory;
 import BO.Custom.Impl.StudentBoImpl;
 import BO.Custom.StudentBo;
 import Entity.Student;
@@ -22,7 +23,7 @@ import java.util.regex.Pattern;
 
 
 public class AddNewStudentFormController {
-    StudentBo studentBo = new StudentBoImpl();
+    StudentBo studentBo = (StudentBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.STUDENT);
 
 
     public AnchorPane addNewStudentContext;

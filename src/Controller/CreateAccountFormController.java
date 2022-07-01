@@ -1,5 +1,7 @@
 package Controller;
 
+import BO.BoFactory;
+import BO.Custom.UserBo;
 import DAO.Custom.Impl.UserDaoImpl;
 import DAO.Custom.UserDao;
 import Entity.User;
@@ -33,12 +35,14 @@ public class CreateAccountFormController {
     public JFXRadioButton femaleButton;
     private ToggleGroup group = new ToggleGroup();
 
-    UserDao userDao = new UserDaoImpl();
+    UserBo userBo = (UserBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.USER);
 
     public void initialize(){
             btnAddAccount.setDisable(true);
             maleButton.setToggleGroup(group);
             femaleButton.setToggleGroup(group);
+
+
     }
 
     public void addAccountOnAction(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
@@ -55,9 +59,9 @@ public class CreateAccountFormController {
         String password = pwdPassword.getText();
         String confirmation = pwdConfirmPassword.getText();
         if(password.equals(confirmation)){
-            User u001 = new User(userDao.generateNewID(), name, address, contact, Date.valueOf(birthDay), gender, password);
+            User u001 = new User(userBo.generateNewID(), name, address, contact, Date.valueOf(birthDay), gender, password);
 
-            userDao.save(u001);
+            userBo.save(u001);
 
         }else{
             new Alert(Alert.AlertType.WARNING,"Password not matched!..").show();

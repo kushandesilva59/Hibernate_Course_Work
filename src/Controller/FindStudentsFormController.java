@@ -1,5 +1,6 @@
 package Controller;
 
+import BO.BoFactory;
 import BO.Custom.Impl.QueryBoImpl;
 import BO.Custom.Impl.StudentBoImpl;
 import BO.Custom.QueryBo;
@@ -28,7 +29,7 @@ public class FindStudentsFormController {
     public TableColumn colContact;
     public TableColumn colRoomId;
     public TableColumn colPayment;
-    QueryBo queryBo = new QueryBoImpl();
+    QueryBo queryBo = (QueryBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.QUERY);
 
 
     public void initialize() throws IOException {

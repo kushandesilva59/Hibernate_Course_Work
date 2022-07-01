@@ -1,6 +1,9 @@
 package Controller;
 
+import BO.BoFactory;
+import BO.Custom.Impl.QueryBoImpl;
 import BO.Custom.Impl.RoomBoImpl;
+import BO.Custom.QueryBo;
 import BO.Custom.RoomBo;
 import DAO.Custom.Impl.QueryDaoImpl;
 import DAO.Custom.QueryDao;
@@ -35,8 +38,9 @@ public class RoomUpdateDeleteFormController {
     public TextField txtKeyRental;
     public TextField txtQTY;
     public Button btnDelete;
-    RoomBo roomBo = new RoomBoImpl();
-    QueryDao queryDao = new QueryDaoImpl();
+    RoomBo roomBo = (RoomBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.ROOM);
+    QueryBo queryBo = (QueryBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.QUERY);
+
 
 
 
@@ -46,6 +50,8 @@ public class RoomUpdateDeleteFormController {
         colKeyRental.setCellValueFactory(new PropertyValueFactory("keyMoney"));
         colQTY.setCellValueFactory(new PropertyValueFactory("qty"));
         txtRoomId.setEditable(false);
+
+
 
         tblRooms.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             setRoomDetails(newValue);
@@ -73,7 +79,7 @@ public class RoomUpdateDeleteFormController {
                 new Alert(Alert.AlertType.CONFIRMATION, "Deleted!..").show();
                 String roomId = txtRoomId.getText();
 
-                queryDao.deleteReserveByRoomId(roomId);
+                queryBo.deleteReserveByRoomId(roomId);
                 roomBo.delete(roomId);
 
                 Room room = tblRooms.getSelectionModel().getSelectedItem();

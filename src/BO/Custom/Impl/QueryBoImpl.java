@@ -9,6 +9,7 @@ import Util.FactoryConfiguration;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.io.IOException;
@@ -23,5 +24,9 @@ public class QueryBoImpl implements QueryBo {
 
     public boolean deleteReserveByStudentId(String studentId) throws IOException {
         return queryDao.deleteReserveByStudentId(studentId);
+    }
+
+    public boolean deleteReserveByRoomId(String roomId) throws IOException {
+        return queryDao.deleteReserveByRoomId(roomId);
     }
 }
