@@ -47,6 +47,7 @@ public class QueryDaoImpl implements QueryDao {
     public boolean deleteReserveByStudentId(String studentId) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
+
         Query query = session.createQuery("DELETE FROM Reserve WHERE student.studentId =: id");
         query.setParameter("id",studentId);
 
@@ -59,7 +60,6 @@ public class QueryDaoImpl implements QueryDao {
         }else {
             return false;
         }
-
     }
 
     public boolean deleteReserveByRoomId(String roomId) throws IOException {
@@ -77,6 +77,5 @@ public class QueryDaoImpl implements QueryDao {
         }else {
             return false;
         }
-
     }
 }
