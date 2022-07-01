@@ -55,7 +55,8 @@ public class StudentDaoImpl implements StudentDao {
 
         transaction.commit();
         session.close();
-        return true;    }
+        return true;
+    }
 
     @Override
     public Student search(String studentId){

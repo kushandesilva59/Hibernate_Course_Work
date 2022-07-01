@@ -34,4 +34,12 @@ public class Student {
         this.gender = gender;
 
     }
+
+    public Student(String name, String address, String contact, String dob, String gender) {
+        this.name = name;
+        this.address = address;
+        this.contact = contact;
+        this.birthday = birthday;
+        this.gender = gender;
+    }
 }

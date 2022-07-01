@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class StudentManageFormController {
@@ -80,15 +81,18 @@ public class StudentManageFormController {
     }
 
     public void deleteOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-        Student student = tblStudents.getSelectionModel().getSelectedItem();
+        Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure ?").showAndWait();
 
-        QueryBo queryBo = new QueryBoImpl();
-        queryBo.deleteReserveByStudentId(student.getStudentId());
-        //first delete reservations
-        studentBo.delete(student.getStudentId());
-        tblStudents.getItems().remove(student);
-        tblStudents.refresh();
-        System.out.println("Done!..");
+        if(buttonType.get().equals(ButtonType.OK)){
+            Student student = tblStudents.getSelectionModel().getSelectedItem();
+
+            QueryBo queryBo = new QueryBoImpl();
+            queryBo.deleteReserveByStudentId(student.getStudentId());
+            //first delete reservations
+            studentBo.delete(student.getStudentId());
+            tblStudents.getItems().remove(student);
+            tblStudents.refresh();
+        }
     }
 
     public void saveOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
@@ -97,21 +101,39 @@ public class StudentManageFormController {
         String contact = txtContact.getText();
         LocalDate birthDay = dateBirthDay.getValue();
         String gender = comboGender.getValue();
-        if(name == null || address == null || contact == null || gender == null || birthDay == null){
-           new Alert(Alert.AlertType.WARNING,"Something went wrong!..").show();
-        }else{
-            String DOB = birthDay.toString();
-            Student student = new Student(studentBo.generateNewID(), name, address, contact, DOB, gender);
-            new Alert(Alert.AlertType.CONFIRMATION,"Successfully added student!..").show();
-            studentBo.save(student);
-            setStudents();
+        if(btnSave.getText().equals("Save")){
+            if(name == null || address == null || contact == null || gender == null || birthDay == null){
+                new Alert(Alert.AlertType.WARNING,"Something went wrong!..").show();
+            }else{
+                String DOB = birthDay.toString();
+                Student student = new Student(studentBo.generateNewID(), name, address, contact, DOB, gender);
+                new Alert(Alert.AlertType.CONFIRMATION,"Successfully added student!..").show();
+                studentBo.save(student);
+                setStudents();
 
+            }
+            //update
+        }else{
+            if(name == null || address == null || contact == null || gender == null || birthDay == null){
+                new Alert(Alert.AlertType.WARNING,"Something went wrong!..").show();
+            }else{
+                String DOB = birthDay.toString();
+                Student student = tblStudents.getSelectionModel().getSelectedItem();
+                student.setName(txtName.getText());
+                student.setAddress(address);
+                student.setContact(contact);
+                student.setBirthday(DOB);
+                student.setGender(gender);
+                new Alert(Alert.AlertType.CONFIRMATION,"Successfully added student!..").show();
+                studentBo.update(student);
+                tblStudents.refresh();
+            }
         }
 
     }
 
     public void backOnAction(ActionEvent event) {
-
+        
     }
 
     public void keyReleasedOnAction(KeyEvent keyEvent) {
