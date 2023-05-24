@@ -4,44 +4,42 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="loginFormContext" prefHeight="304.0" prefWidth="608.0" style="-fx-border-color: #95a5a6; -fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginFormController">
+<AnchorPane fx:id="loginFormContext" prefHeight="834.0" prefWidth="628.0" style="-fx-border-color: #95a5a6; -fx-background-color: #E2E1CE;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginFormController">
    <children>
-      <Label layoutX="14.0" layoutY="24.0" text="Hostel Management System">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Separator layoutX="14.0" layoutY="56.0" prefHeight="3.0" prefWidth="561.0" />
-      <Button layoutX="229.0" layoutY="250.0" mnemonicParsing="false" onAction="#loginOnAction" prefHeight="31.0" prefWidth="151.0" text="Log in" />
-      <ImageView fitHeight="31.0" fitWidth="41.0" layoutX="104.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="238.0" layoutY="710.0" mnemonicParsing="false" onAction="#loginOnAction" prefHeight="31.0" prefWidth="151.0" style="-fx-background-color: #97968A;" text="Log in" textFill="WHITE" />
+      <ImageView fitHeight="31.0" fitWidth="41.0" layoutX="123.0" layoutY="593.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Asserts/outline_lock_black_24dp.png" />
          </image>
       </ImageView>
-      <Label layoutX="284.0" layoutY="214.0" onMouseClicked="#createAccountOnActionLabel" text="You haven't account ? Create Account here !">
+      <Label layoutX="235.0" layoutY="667.0" onMouseClicked="#createAccountOnActionLabel" text="You haven't account ? Create Account here !">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <ImageView fitHeight="31.0" fitWidth="41.0" layoutX="104.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="31.0" fitWidth="41.0" layoutX="123.0" layoutY="537.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Asserts/round_account_circle_black_24dp.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txtUsername" layoutX="147.0" layoutY="89.0" prefHeight="31.0" prefWidth="409.0" />
-      <PasswordField fx:id="pwdPassword" layoutX="147.0" layoutY="145.0" prefHeight="31.0" prefWidth="409.0" />
-      <TextField fx:id="txtPassword" layoutX="147.0" layoutY="145.0" prefHeight="31.0" prefWidth="409.0" />
-      <CheckBox fx:id="checkBoxShow" layoutX="433.0" layoutY="183.0" mnemonicParsing="false" onAction="#doneOnAction" text="Show Password !">
+      <TextField fx:id="txtUsername" layoutX="174.0" layoutY="537.0" opacity="0.5" prefHeight="31.0" prefWidth="329.0" />
+      <PasswordField fx:id="pwdPassword" layoutX="176.0" layoutY="593.0" opacity="0.25" prefHeight="31.0" prefWidth="329.0" />
+      <TextField fx:id="txtPassword" layoutX="175.0" layoutY="593.0" opacity="0.25" prefHeight="31.0" prefWidth="329.0" />
+      <CheckBox fx:id="checkBoxShow" layoutX="384.0" layoutY="636.0" mnemonicParsing="false" onAction="#doneOnAction" text="Show Password !">
          <font>
             <Font size="13.0" />
          </font>
       </CheckBox>
+      <ImageView fitHeight="380.0" fitWidth="487.0" layoutX="123.0" layoutY="107.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Asserts/Hostel%20logo.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

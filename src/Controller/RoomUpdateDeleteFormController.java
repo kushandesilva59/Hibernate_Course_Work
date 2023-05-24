@@ -64,6 +64,7 @@ public class RoomUpdateDeleteFormController {
         txtRoomId.setStyle("-fx-border-color: gray");
         txtRoomType.setStyle("-fx-border-color: gray");
         txtQTY.setStyle("-fx-border-color: gray");
+
         btnDelete.setText("Delete");
         txtRoomId.setText(room.getRoomId());
         txtRoomType.setText(room.getType());
